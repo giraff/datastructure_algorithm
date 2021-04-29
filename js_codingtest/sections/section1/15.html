@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                let answer;
+                let len = s.length;
+                if(len % 2 == 0) {
+                    answer = s.substring(len/2 - 1, len/2 + 1)
+                } else {
+                    answer = s.charAt(len/2);
+                }
+
+                return answer;
+            }
+            console.log(solution("study"));
+            console.log(solution("studyy"));
+            console.log(solution("beautiful"));
+            console.log(solution("hey"));
+            console.log(solution(""));
+
+            console.log(solution("ga"));
+
+
+
+
+        </script>
+    </body>
+</html>

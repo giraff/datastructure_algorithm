@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(a, b, c){
+                let answer="YES", max;
+                
+                // let arr = new Array(a,b,c);
+                // arr.sort(function(a,b) {return a - b});
+                // answer = arr[0] + arr[1] > arr[2] ? "YES" : "NO";
+                
+                let sum = a + b + c; //세 막대의 총 합
+
+                if(a < b) max = b;
+                else max = a;
+
+                if(c > max) max = c;
+
+
+                if( (sum - max) <= max) answer = "NO";
+                //두 막대의 길이 합이 가장 긴 막대의 길이보다 작거나 같으면 answer NO로 갱신
+                return answer;
+            }
+            console.log(solution(6,7,11));
+
+            console.log(solution(13, 33, 17));
+        </script>
+    </body>
+</html>

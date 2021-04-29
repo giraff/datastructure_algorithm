@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>세 수 중 최솟값</title>
+    </head>
+    <body>
+        <script>
+            function solution(a, b, c){
+                let answer;
+
+                // if(a < b) answer = a;
+                // else answer = b;
+
+                // if(c < answer) answer = c;
+
+                answer = [a,b,c].reduce((acc, cur) => {return acc < cur ? acc : cur});
+                return answer;
+            }
+
+            console.log(solution(2, 5, 1));
+            console.log(solution(6, 5, 11));
+            
+        </script>
+        <h1>if문 사용 문제</h1>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                let answer=[];
+                let map1 = new Map();
+                
+                for(let i = 0; i < s.length; i++) {
+                    if(!map1.has(s[i])) map1.set(s[i], 0);
+                }
+
+                for(let elem of map1) {
+                    answer.push(elem);
+                }
+
+                return answer;
+            }
+            let str=["good", "time", "good", "time", "student"];
+            let str2=["순", "서", "서", "순", "대", "로"];
+
+            console.log(solution(str));
+            console.log(solution(str2));
+
+        </script>
+    </body>
+</html>

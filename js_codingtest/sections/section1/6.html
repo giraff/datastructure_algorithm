@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){
+                let answer=[];
+                let odds = new Array();
+                let sum = 0;
+                for(let i = 0 ; i < arr.length; i++) {
+                    if(arr[i] % 2 != 0) {
+                        odds.push(arr[i]);
+                    }
+                }
+
+                let min = odds[0];
+                for(let elem of odds) {
+                    sum = sum + elem;
+                    if(min > elem) min = elem;
+                }
+
+                answer.push(sum);
+                answer.push(min);
+                return answer;
+            }
+            
+            arr=[12, 77, 38, 41, 53, 92, 85];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){         
+                let answer=0;
+                let reg = /[A-Z]/g;
+                let tmp = s.match(reg);
+
+                answer = tmp.length;
+                return answer;
+            }
+
+            let str="KoreaTimeGood";
+            console.log(solution(str));
+            let str1="KOREATimeGood";
+            console.log(solution(str1));
+        </script>
+    </body>
+</html>
