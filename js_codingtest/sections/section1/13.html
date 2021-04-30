@@ -8,6 +8,17 @@
             function solution(s){  
                 let answer="";
 
+                // for of
+                for(let data of s) {
+                  let num = data.charCodeAt();
+                  if(num >= 65 && num <= 90) {
+                    answer += String.fromCharCode(num + 32);
+                  } else if (num >= 97 && num <= 122) {
+                    answer += String.fromCharCode(num - 32);
+                  }
+                }
+
+                // 문자 배열로 변환해서 하기
                 let sArray = s.split("");
 
                 for(let i = 0; i < sArray.length; i++) {

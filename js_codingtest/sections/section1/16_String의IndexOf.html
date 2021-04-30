@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                // 1. hashmap 사용
+                const map = new Map();
+                let tmp = new Array();
+
+                for(let data of s) {
+                    if(!map.has(data)) 
+                        map.set(data, 0);
+                }
+
+                for(let elem of map.keys()) {
+                    tmp.push(elem);
+                }
+
+                answer = tmp.join("");
+
+                //.. 2. indexOf 사용
+                console.log(s.indexOf('k', 3));
+                // indexOf(char, idx) : 지정한 문자(문자열)가 idx 인덱스 이후로, 첫 번째로 발견되는 위치의 인덱스 반환
+                // indexOf() 에서 발견 못하면 -1 반환
+
+                for(let i = 0; i < s.length; i++) {
+                  // console.log(s[i], i, s.indexOf(s[i]))
+                  // s[i]에서 맨 먼저 발견되는 문자의 인덱스가 현재 i보다 작으면, 중복되는 문자이다. 
+                  if(s.indexOf(s[i]) === i) answer += s[i];
+                }
+                return answer;
+
+              
+            }
+
+            // Bonus) k가 몇 번 중복되는 지 세어주는 함수
+            function solution1(s){ 
+              let answer = 0;
+
+              let pos = s.indexOf('k');
+              while(pos !== -1) {
+                answer++;
+                pos=s.indexOf('k', pos + 1);
+                // 현재 위치보다 더 뒤에서부터 k를 탐색해본다. 더이상 k가 없으면 pos가 -1 되어 while문 탈출
+              }
+
+              return answer;
+            }
+
+            console.log(solution1("ksekkset"));
+            console.log(solution("ksekkset"));
+            console.time();
+            console.log(solution("abcdaAaaaaaa"));
+            console.timeEnd();
+        </script>
+        <h1>String의 indexOf</h1>
+        
+    </body>
+</html>

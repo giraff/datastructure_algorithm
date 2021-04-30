@@ -6,13 +6,22 @@
     <body>
         <script>
             function solution(s){  
-                let answer="", max=s[0];
+                let answer = "", max = Number.MIN_SAFE_INTEGER;
 
-                for (let elem of s) {
-                    if(max.length < elem.length ) max = elem;
+                // 1. 내 풀이
+                // for (let elem of s) {
+                //     if(max.length < elem.length ) max = elem;
+                // }
+
+                // answer = max;
+
+                // 2. length 사용
+                for(let x of s) {
+                  if(max < x.length) {
+                    max = x.length;
+                    answer = x;
+                  }
                 }
-
-                answer = max;
                 return answer;
             }
             let str=["teacher", "time", "student", "beautiful", "good"];

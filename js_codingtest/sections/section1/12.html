@@ -7,7 +7,26 @@
         <script>
             function solution(s){         
                 let answer="";
+
+                // 1. 함수 사용
                 answer = s.toUpperCase();
+
+                // 2. for문 사용
+                for(let data of s) {
+                  if(data === data.toLowerCase()) 
+                    answer += data.toUpperCase();
+                  else 
+                    answer += data;
+                }
+
+                // 3. ASCII 코드로 대소문자 구분하여 소 -> 대 변환
+                for(let elem of s) {
+                  let num = elem.charCodeAt();
+                  if(num >= 97 && num <= 122) {
+                    answer += String.fromCharCode(num - 32);
+                  } 
+                }
+
                 return answer;
 
             }
@@ -15,5 +34,12 @@
             let str="ItisTimeToStudy";
             console.log(solution(str));
         </script>
+
+        <p>함수 사용</p>
+        <p>for문 사용</p>
+        <p>ASCII</p>
+        <h1>ASCII (숫자) -> 문자로 전환</h1>
+        <p><strong>String 객체의 fromCharCode: String.fromCharCode(ASCII) => String</strong></p>
+        <p>character code에서 string으로 왔다!</p>
     </body>
 </html>
