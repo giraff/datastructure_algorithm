@@ -8,21 +8,21 @@
             function solution(arr){
                 let answer=[];
                 let odds = new Array();
-                let sum = 0;
-                for(let i = 0 ; i < arr.length; i++) {
-                    if(arr[i] % 2 != 0) {
-                        odds.push(arr[i]);
+                let sum = 0, min = Number.MAX_SAFE_INTEGER;
+                for(let elem of arr) {
+                    // ==: 값 비교
+                    // === : 값의 타입까지 비교
+                    if(elem % 2 !== 0) {
+                        sum += elem;
+                        if(min > elem) min = elem;
+
                     }
                 }
-
-                let min = odds[0];
-                for(let elem of odds) {
-                    sum = sum + elem;
-                    if(min > elem) min = elem;
-                }
-
+                    // += 은 연산이 조금 더 빠르다 (연산 한 번)
+                    // sum= sum + elem 은 연산 두 번. 되도록이면 += 사용
                 answer.push(sum);
                 answer.push(min);
+                
                 return answer;
             }
             

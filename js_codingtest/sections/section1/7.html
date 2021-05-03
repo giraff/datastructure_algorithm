@@ -8,12 +8,13 @@
             function solution(day, arr){
                 let answer=0;
 
+                // day : 날짜의 일의 자리, arr 자동차 뒤 2자리 배열
                 for(let elem of arr) {
                     let target = elem % 10;
                     if(day == target) 
-                        answer = answer + 1;
+                        answer++;
                 }
-                
+                // 10진수 정수를 10으로 나눈 나머지는 무조건 정수의 1의 자리 값
                 return answer;
             }
             
