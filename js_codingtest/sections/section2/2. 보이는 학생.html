@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){         
+                let answer = 0;
+
+                let max = Number.MIN_SAFE_INTEGER;
+
+                for(let i = 0 ; i < arr.length; i++) {
+                    if(max >= arr[i]) continue;
+                    max = arr[i];
+                    answer++;
+                }
+
+                return answer;
+            }
+
+            let arr=[130, 135, 148, 140, 145, 150, 150, 153];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

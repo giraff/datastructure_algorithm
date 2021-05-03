@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){  
+                let answer="";
+                
+                let hm = new Map();
+                
+                for(let a of arr) {
+                    hm.set(a, 0);
+                }
+
+                arr.sort(function(a,b) {return a-b});
+
+                let preIdx = arr.length - 1;
+
+                for(let i = arr.length - 1 ; i >= 0 ; i--) {
+                    if(arr[preIdx] === arr[i]) {
+                        hm.set(arr[i], arr.length - preIdx);
+                    }
+                    else {
+                        preIdx = i;
+                        hm.set(arr[i], arr.length - i);
+                    }
+                }
+
+                return answer;
+            }
+
+            let arr=[87, 89, 89, 100, 76];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
