@@ -6,8 +6,10 @@
     <body>
         <script>
             function solution(arr){  
+                //answer에 최댓값 저장
                 let answer=Number.MIN_SAFE_INTEGER;
                 
+                //n은 행,열 크기 (nxn)
                 let onecross = 0, twocross = 0;
 
                 for(let i = 0; i < arr.length; i++) {
@@ -18,12 +20,11 @@
                     }
                     onecross += arr[i][i];
                     twocross += arr[i][arr.length - 1 - i];
-    
-                    if(answer < rowsum) answer = rowsum;
-                    if(answer < colsum) answer = colsum;
+
+                    answer = Math.max(answer, rowsum, colsum);
                 }
-                if(answer < onecross) answer = onecross;
-                if(answer < twocross) answer = twocross;
+
+                answer = Math.max(answer, onecross, twocross);
 
                 return answer;
             }

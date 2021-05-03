@@ -8,9 +8,19 @@
             function solution(arr){         
                 let answer=0, cnt=0;
 
-                for(let result of arr) {
-                    cnt = (result === 0) ? 0 : cnt + 1;
-                    answer += cnt;                    
+                // 1. 삼항연산자
+                // for(let result of arr) {
+                //     cnt = (result === 0) ? 0 : cnt + 1;
+                //     answer += cnt;                    
+                // }
+
+                //2 for-of /if-else
+                for(let x of arr) {
+                    if(x === 1) {
+                        cnt++;
+                        answer += cnt;
+                    }
+                    else cnt = 0;
                 }
 
                 return answer;

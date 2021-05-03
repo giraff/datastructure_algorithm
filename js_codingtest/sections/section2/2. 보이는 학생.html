@@ -6,16 +6,15 @@
     <body>
         <script>
             function solution(arr){         
-                let answer = 0;
+                let answer = 1, max = arr[0];
 
-                let max = Number.MIN_SAFE_INTEGER;
-
-                for(let i = 0 ; i < arr.length; i++) {
-                    if(max >= arr[i]) continue;
-                    max = arr[i];
-                    answer++;
+                for(let i = 1 ; i < arr.length; i++) {
+                    if(max < arr[i]) {
+                        max = arr[i];
+                        answer++;
+                    }
                 }
-
+                
                 return answer;
             }
 
