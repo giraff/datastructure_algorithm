@@ -8,13 +8,16 @@
             function solution(s){
                 let answer="YES", tmp = "";
 
-                s = s.toLowerCase();
+                // 정규식 사용하여 소문자만
+                s = s.toLowerCase().replace(/[^a-z]/g,'');
 
-                for (let x of s) {
-                    let data = x.charCodeAt();
-                    if(data >= 97 && data <= 122) tmp += x;
-                }
-                if(tmp.split('').reverse().join('') != tmp) answer = "NO";
+                // for (let x of s) {
+                //     let data = x.charCodeAt();
+                //     if(data >= 97 && data <= 122) tmp += x;
+                // }
+
+                
+                if(s.split('').reverse().join('') != s) answer = "NO";
 
                 return answer;
             }

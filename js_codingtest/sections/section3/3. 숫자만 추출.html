@@ -8,12 +8,10 @@
             function solution(str){
                 let answer="";
 
-                for(let x of str) {
-                    let data = x.charCodeAt();
-                    if (data >= 48 && data <= 57) answer += x;
+                for(let data of str) {
+                    if(!isNaN(data)) answer = answer * 10 + Number(data);
                 }
-
-                return parseInt(answer, 10);
+                return answer;
             }
             
             let str="g0en2T0s8eSoft";

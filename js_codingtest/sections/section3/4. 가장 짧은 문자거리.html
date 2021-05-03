@@ -7,18 +7,31 @@
         <script>
             function solution(s, t){
                 let answer=[];
-                let len = s.length;
-                for(let i = 0; i < len; i++) {
-                    let min = Number.MAX_SAFE_INTEGER, distance = 0;
-                    for(let j = 0; j < len; j++) {
-                        if(s[j] === t) {
-                            let distance = (j - i > 0) ? j - i : i - j;
-                            if(min > distance) min = distance;
-                        }
-                    }
-                    answer.push(min);
-                }
+                let P = 1000;
 
+                // 1. 배열의 첫 원소부터 돌면서 자기 기준 왼쪽에 위치한 t(e) 까지의 길이 체크
+                for(let data of s) {
+                    if(data !== t) {
+                        P++;
+                        answer.push(P);
+                    } else {
+                        P = 0;
+                        answer.push(P);
+                    }
+                }
+                // round 2. P 다시 1000으로 초기화
+                P = 1000;
+                // 2. 이번엔 배열 마지막 원소부터 돌면서 자기 기준 오른쪽에 위치한 t(e) 까지의 길이 체크
+                // 하면서, 그 길이가 인덱스에 매칭되는 원소값보다 작으면 교체
+                for(let i = s.length - 1; i >= 0; i--) {
+                    if(s[i] !== t) {
+                        P++;
+                        answer[i] = Math.min(answer[i], P); 
+                    } else {
+                        P = 0;
+                        answer[i] = P;
+                    }
+                }
                 return answer;
             }
             

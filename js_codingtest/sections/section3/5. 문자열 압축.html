@@ -6,25 +6,16 @@
     <body>
         <script>
             function solution(s){
-                let answer="";
-                let cnt=[];
-                answer += s[0];
-                let count = 1;
-
-                for(let i = 1; i < s.length; i++) {
-                    
-                    if(s[i-1] !== s[i]) {
-                        
-                        cnt.push(count);
-                        count = 0;
-                    }
-                    
-                    count++;
+                let answer="", cnt = 1;
+                s = s + "";
+                for(let i = 0; i < s.length ; i++) {
+                    if(s[i] === s[i+1]) cnt++;
+                    else {
+                        answer += s[i];
+                        if(cnt > 1) answer += String(cnt);
+                        cnt = 1; 
+                    } 
                 }
-
-                console.log(cnt);
-                
-
                 return answer;
             }
             

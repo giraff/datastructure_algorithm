@@ -9,7 +9,7 @@
                 let answer="YES";
                 let len = s.length;
                 s = s.toLowerCase();
-                for(let i = 0 ; i < (len/2) ; i++) {
+                for(let i = 0 ; i < Math.floor(len/2) ; i++) {
                     if(s[i] !== s[len-1-i]) answer = "NO";
                 }
                 return answer;
