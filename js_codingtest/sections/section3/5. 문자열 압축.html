@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){
+                let answer="";
+                let cnt=[];
+                answer += s[0];
+                let count = 1;
+
+                for(let i = 1; i < s.length; i++) {
+                    
+                    if(s[i-1] !== s[i]) {
+                        
+                        cnt.push(count);
+                        count = 0;
+                    }
+                    
+                    count++;
+                }
+
+                console.log(cnt);
+                
+
+                return answer;
+            }
+            
+            let str="KKHSSSSSSSE";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

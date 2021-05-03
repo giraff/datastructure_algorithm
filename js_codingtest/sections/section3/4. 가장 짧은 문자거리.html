@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s, t){
+                let answer=[];
+                let len = s.length;
+                for(let i = 0; i < len; i++) {
+                    let min = Number.MAX_SAFE_INTEGER, distance = 0;
+                    for(let j = 0; j < len; j++) {
+                        if(s[j] === t) {
+                            let distance = (j - i > 0) ? j - i : i - j;
+                            if(min > distance) min = distance;
+                        }
+                    }
+                    answer.push(min);
+                }
+
+                return answer;
+            }
+            
+            let str="teachermode";
+            console.log(solution(str, 'e'));
+        </script>
+    </body>
+</html>
