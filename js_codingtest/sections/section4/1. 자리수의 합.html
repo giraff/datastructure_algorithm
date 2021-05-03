@@ -7,12 +7,30 @@
         <script>
             function solution(n, arr){
                 let answer, max=Number.MIN_SAFE_INTEGER;
+                
+                for(let i = 0 ; i < n ; i++) {
+                    let tmp = arr[i];
+
+                    let sum = 0;
+
+                    while(arr[i] != 0) {
+                        sum += arr[i] % 10;
+                        arr[i] = Math.floor(arr[i]/10);                        
+                    }
+                    if(max === sum) {
+                        answer = Math.max(answer, tmp);
+                    }
+                    else if(max < sum) {
+                        max = sum;
+                        answer = tmp;
+                    }
+                }
 
                 return answer;
             }
             
-            let arr=[128, 460, 603, 40, 521, 137, 123];
-            console.log(solution(7, arr));
+            let arr1=[128, 460, 603, 40, 521, 137, 123];
+            console.log(solution(7, arr1));
         </script>
     </body>
 </html>
