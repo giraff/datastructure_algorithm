@@ -7,7 +7,30 @@
         <script>
             function solution(test){
                 let answer=0;
-                
+                let n = test[0].length;
+                let m = test.length;
+                let maxIdx = Array.from({length: n}, () => Number.MIN_SAFE_INTEGER);
+                let minIdx = Array.from({length: n}, () => Number.MAX_SAFE_INTEGER);
+
+                for(let i = 0 ; i < m ; i++) {
+                    for(let j = 0 ; j < n ; j++) {
+                        if(maxIdx[test[i][j] - 1] < j) {
+                            maxIdx[test[i][j] - 1] = j  
+                        }
+                        if(minIdx[test[i][j] -1] > j) {
+                            minIdx[test[i][j] - 1] = j;
+                        }
+                    }
+                }
+
+
+                for(let i = 0 ; i < n; i++) {
+                    for(let j = 0; j < n; j++) {
+                        if(maxIdx[i] <= minIdx[j]) {
+                            answer++;
+                        }
+                    }
+                }
                 return answer;
             }
             
