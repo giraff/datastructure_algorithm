@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+          // 아나그램 판별 함수 *7 번 소스 참고
+              function isAnagram(str1, str2){
+                let answer=true; 
+                let n = str1.length;
+                let tmp1 = new Map();
+                let tmp2 = new Map();
+
+                for(let data of str1) {
+                  if(!tmp1.has(data)) {
+                    tmp1.set(data, 1);
+                  } tmp1.set(data, tmp1.get(data) + 1);
+                }
+
+                for(let data of str2) {
+                  if(!tmp2.has(data)) {
+                    tmp2.set(data, 1);
+                  } tmp2.set(data, tmp2.get(data) + 1);
+                }
+
+                for(let data of tmp1.keys()) {
+                  if(!tmp2.has(data) || tmp1.get(data) !== tmp2.get(data)) answer = false;
+                }
+
+                return answer;
+            }
+          // 정해진 길이가 있는 연속 부분 수열 *4번 소스 참고
+            function solution(s, t){
+                let answer = 0;
+                let n = s.length;
+                let k = t.length;
+                for(let i = 0; i <= n - k ; i++) {
+                    let sum = "";
+                    for(let j = i ; j < i + k; j++){
+                      sum += s[j];
+                    } 
+                    if(isAnagram(sum,t)) answer++;
+                }
+                return answer;
+            }
+            
+            let a="bacaAacba";
+            let b="abc";
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>

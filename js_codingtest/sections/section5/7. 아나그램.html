@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(str1, str2){
+                let answer="YES"; 
+
+                let n = str1.length;
+                let tmp1 = new Map();
+                let tmp2 = new Map();
+                for(let data of str1) {
+                  if(!tmp1.has(data)) {
+                    tmp1.set(data, 1);
+                  } tmp1.set(data, tmp1.get(data) + 1);
+                }
+
+                for(let data of str2) {
+                  if(!tmp2.has(data)) {
+                    tmp2.set(data, 1);
+                  } tmp2.set(data, tmp2.get(data) + 1);
+                }
+
+                for(let data of tmp1.keys()) {
+                  if(!tmp2.has(data) || tmp1.get(data) !== tmp2.get(data)) answer = "NO";
+                }
+
+                return answer;
+            }
+            
+            let a="AbaAeCe";
+            let b="baeeACA";
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>

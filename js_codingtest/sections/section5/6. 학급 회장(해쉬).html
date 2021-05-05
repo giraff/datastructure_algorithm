@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                let answer, max=Number.MIN_SAFE_INTEGER;
+
+                let tmp = new Map();
+
+                for(let data of s) {
+                  if(!tmp.has(data)) 
+                    tmp.set(data, 1);
+                  tmp.set(data, tmp.get(data) + 1);
+                }
+
+                for(let elem of tmp.keys()) {
+                  if(max < tmp.get(elem)) {
+                    max = tmp.get(elem);
+                    answer = elem;
+                  }
+                }
+                return answer;
+            }
+
+            let str="EEAAA";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
