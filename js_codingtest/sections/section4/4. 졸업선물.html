@@ -7,7 +7,41 @@
         <script>
             function solution(m, product){
                 let answer=0;
+                let cnt = new Set();
+                let count = 0;
+                // 상품 가격 + 배송비 값 순으로 정렬
+                // for(let i = 0; i < product.length - 1; i++) {
+                //   sumL = product[i].reduce((a,b) => a+b, 0);
+                //   sumR = product[i+1].reduce((a,b)=> a+b, 0);
+                //   if(sumL > sumR) {
+                //     let tmp = product[i];
+                //     product[i] = product[i+1];
+                //     product[i+1] = tmp;
+                //   }
+                // }
                 
+                // 배열 오름차순 정렬 (코드 한 줄)
+                product.sort((a,b) => (a[0] + a[1]) - (b[0] + b[1]));
+                
+                // 완전 탐색 => 어느 상품을 할인 받을까?
+                // 할인 받을 품목에서 고정한 채로 정렬순으로 모든 합의 경우의 수 따지기
+                for(let i = 0; i < product.length; i++) {
+                  let money = m - (product[i][0] / 2) + product[i][1];
+                  let cnt = 1;
+                  // money는 이미 상품 하나를 할인하고 나서 남은 예산이므로 품목도 1부터 카운트
+                  for(let j = 0 ; i < product.length; j++) {
+                    //남은 예산이 구매할 값보다 작으면 break;
+                    if(j !== i && (product[j][0] + product[j][1]) > money) break;
+                    // 남은 예산(money)이 현재 구매값보다 크면 count
+                    if(j !== i && (product[j][0] + product[j][1]) <= money) {
+                      money -= (product[j][0] + product[j][1]);
+                      cnt++;
+                    }
+                    // 기존의 값보다 cnt값이 크면 최댓값 교체 
+                    answer = Math.max(answer, cnt);
+                  }
+                }
+
                 return answer;
             }
             

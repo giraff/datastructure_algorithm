@@ -8,7 +8,6 @@
             function solution(n, k, card){
                 let answer;
                 let sum = new Set();
-                let sortArr = [];
                 for(let i = 0; i < n-2 ; i++) {
                     for(let j = i+1; j < n-1 ; j++) {
                         for(let k = j+1; k < n; k++) {
@@ -16,14 +15,10 @@
                         }
                     }
                 }
-
-                sum.forEach((elem) => {
-                    sortArr.push(elem);
-                });
-
-                sortArr.sort(function(a,b) {return b-a});
-
-                answer = sortArr[k-1];
+                
+                let arr = Array.from(sum).sort((a,b)=> b-a);
+                
+                answer = arr[k-1];
 
                 return answer;
             }
