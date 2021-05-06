@@ -11,6 +11,7 @@
                 let n = str1.length;
                 let tmp1 = new Map();
                 let tmp2 = new Map();
+
                 for(let data of str1) {
                   if(!tmp1.has(data)) {
                     tmp1.set(data, 1);
@@ -23,8 +24,8 @@
                   } tmp2.set(data, tmp2.get(data) + 1);
                 }
 
-                for(let data of tmp1.keys()) {
-                  if(!tmp2.has(data) || tmp1.get(data) !== tmp2.get(data)) answer = "NO";
+                for(let [key, value] of tmp1) {
+                  if(!tmp2.has(key) || value !== tmp2.get(key)) answer = "NO";
                 }
 
                 return answer;
@@ -33,6 +34,38 @@
             let a="AbaAeCe";
             let b="baeeACA";
             console.log(solution(a, b));
+        </script>
+    </body>
+</html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(str1, str2){
+                let answer="YES"; 
+
+                let n = str1.length;
+                let sH = new Map();
+                
+                for(let data of str1) {
+                  if(!sH.has(data)) sH.set(data, 1);
+                  else sH.set(data, sH.get(data) + 1);
+                }
+
+                for(let elem of str2) {
+                  if(!sH.has(elem) || sH.get(elem) === 0) return "NO";
+                  sH.set(elem, sH.get(elem) - 1);
+                }
+
+                return answer;
+            }
+            
+            let a1="abaCC";
+            let b1="Caaab";
+            console.log(solution(a1, b1));
         </script>
     </body>
 </html>

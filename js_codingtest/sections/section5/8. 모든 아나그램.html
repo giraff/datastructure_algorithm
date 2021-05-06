@@ -1,3 +1,75 @@
+<!-- 선생님 풀이 -->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+          function compareMaps(map1, map2) {
+            // 일단 키 개수가 다르면 무조건 다른 맵
+            if(map1.size !== map2.size) return false;
+
+            // 키 개수가 같으면
+            for(let [key, val] of map1) {
+              // 1. 키 값이 정확히 같은 걸 갖고 있는지? 
+              // 2. 같은 키는 있는데, 그 키의 value 값이 다르면 false
+              if(!map2.has(key) || map2.get(key) !== val) return false;
+            }
+
+            return true;
+          }
+          // 정해진 길이가 있는 연속 부분 수열 *4번 소스 참고
+          function solution(s, t){
+              let answer = 0;
+              let tH = new Map();
+              let sH = new Map();
+
+              // tH에 t 문자열 셋팅
+              for (let x of t) {
+                if(tH.has(x)) tH.set(x, tH.get(x) + 1);
+                else tH.set(x, 1);
+              }
+
+              // len은 t 길이보다 하나 작게 (2) 
+              let len = t.length - 1;
+
+              // 길이가 3이면 일단 두 개는 미리 셋팅하기
+              for(let i = 0 ; i < len ; i++) {
+                if(sH.has(s[i])) tH.set(s[i], sH.get(s[i]) + 1);
+                else sH.set(s[i], 1);
+              }
+
+
+              // Two Pointer + 슬라이딩 시작
+              let lt = 0; 
+              // rt는 2번째 부터 시작한다.
+              for(let rt = len; rt < s.length; rt++) {
+                // 추가
+                if(sH.has(rt)) tH.set(rt, sH.get(rt) + 1);
+                else sH.set(rt, 1);
+                // 비교
+                if(compareMaps(sH, tH)) answer++;
+                // 추가 -> 비교 -> lt가 가리키는 것을 하나 빼고 lt 증가
+                sH.set(s[lt], sH.get(s[lt]) - 1);
+                // 만약 lt 가리키는 것이 하나 뺐더니 0이면 완전히 delete 해버리기
+                if(sH.get(s[lt]) === 0) sH.delete(s[lt]);
+                lt++;
+
+
+
+              }
+              return answer;
+          }
+          
+          let a="bacaAacba";
+          let b="abc";
+          console.log(solution(a, b));
+        </script>
+    </body>
+</html>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -7,28 +79,19 @@
         <script>
           // 아나그램 판별 함수 *7 번 소스 참고
               function isAnagram(str1, str2){
-                let answer=true; 
-                let n = str1.length;
-                let tmp1 = new Map();
-                let tmp2 = new Map();
+                let sH = new Map();
 
-                for(let data of str1) {
-                  if(!tmp1.has(data)) {
-                    tmp1.set(data, 1);
-                  } tmp1.set(data, tmp1.get(data) + 1);
+                for(let x of str1) {
+                  if(!sH.has(x)) sH.set(x, 1);
+                  else sH.set(x, sH.get(x) + 1);
                 }
 
                 for(let data of str2) {
-                  if(!tmp2.has(data)) {
-                    tmp2.set(data, 1);
-                  } tmp2.set(data, tmp2.get(data) + 1);
+                  if(!sH.has(data) || sH.get(data) === 0) return false;
+                  sH.set(data, sH.get(data) - 1);
                 }
 
-                for(let data of tmp1.keys()) {
-                  if(!tmp2.has(data) || tmp1.get(data) !== tmp2.get(data)) answer = false;
-                }
-
-                return answer;
+                return true;
             }
           // 정해진 길이가 있는 연속 부분 수열 *4번 소스 참고
             function solution(s, t){
@@ -36,18 +99,15 @@
                 let n = s.length;
                 let k = t.length;
                 for(let i = 0; i <= n - k ; i++) {
-                    let sum = "";
-                    for(let j = i ; j < i + k; j++){
-                      sum += s[j];
-                    } 
-                    if(isAnagram(sum,t)) answer++;
+                  let str = s.slice(i, i + k);
+                  if(isAnagram(str,t)) answer++;
                 }
                 return answer;
             }
             
-            let a="bacaAacba";
-            let b="abc";
-            console.log(solution(a, b));
+            let a1="bacaAacba";
+            let b2="abc";
+            console.log(solution(a1, b2));
         </script>
     </body>
 </html>

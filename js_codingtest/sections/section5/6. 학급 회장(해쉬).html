@@ -11,21 +11,20 @@
                 let tmp = new Map();
 
                 for(let data of s) {
-                  if(!tmp.has(data)) 
-                    tmp.set(data, 1);
-                  tmp.set(data, tmp.get(data) + 1);
+                  if(!tmp.has(data)) tmp.set(data, 1);
+                  else tmp.set(data, tmp.get(data) + 1);
                 }
 
-                for(let elem of tmp.keys()) {
-                  if(max < tmp.get(elem)) {
-                    max = tmp.get(elem);
-                    answer = elem;
+                for(let [key, value] of tmp) {
+                  if(max < value) {
+                    max = value;
+                    answer = key;
                   }
                 }
                 return answer;
             }
 
-            let str="EEAAA";
+            let str="BACBACCACCBDEDE";
             console.log(solution(str));
         </script>
     </body>

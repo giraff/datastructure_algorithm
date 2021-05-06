@@ -40,3 +40,33 @@
         </script>
     </body>
 </html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+          // 그냥 두 배열 합친 뒤 정렬하는 것은 시간이 오래 걸린다 (sort 함수도 O(nlogn))
+            function solution(arr1, arr2){
+              let answer=[];
+              // 시간 복잡도 O(n + m)
+                let n = arr1.length;
+                let m = arr2.length;
+                let p1 = p2 = 0;
+                while(p1 < n && p2 < m) {
+                  if(arr1[p1] <= arr2[p2]) answer.push(arr1[p1++]);
+                  else answer.push(arr2[p2++]);
+                }
+                while(p1 < n) answer.push(arr1[p1++]);
+                while(p2 < m) answer.push(arr2[p2++]);
+                return answer;
+            }
+            
+            let a1=[1];
+            let b1=[2, 3];
+            console.log(solution(a1, b1));
+        </script>
+    </body>
+</html>
