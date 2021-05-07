@@ -8,12 +8,56 @@
             function solution(s){
                 let answer=0;
                 let stack=[];
-                      
+                let flag = true;
+                for(let x of s) {
+                    if(x==='(') {
+                        stack.push(x);
+                        flag = true;
+                    } else if(flag === false) {
+                        stack.pop();
+                        answer++;
+                    } else {
+                        stack.pop();
+                        answer += stack.length;
+                        flag = false;
+                    }
+                }
                 return answer;
             }
-            
-            let a="()(((()())(())()))(())";
+            let b="()(((()())(())()))(())";
+            let a="(((()(()()))(())()))(()())";
             console.log(solution(a));
+            console.log(solution(b));
+        </script>
+    </body>
+</html>
+
+<!-- 쌤풀이 -->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){
+                let answer=0;
+                let stack=[];
+                for(let i = 0; i < s.length; i++) {
+                    if(s[i] === '(') stack.push(s[i]);
+                    else {
+                        stack.pop();
+                        if(s[i-1] === '(') answer += (stack.length);
+                        else answer += 1;
+                    }
+                }
+                return answer;
+            }
+            let b1="()(((()())(())()))(())";
+            let a1="(((()(()()))(())()))(()())";
+            console.log(solution(a1));
+            console.log(solution(b1));
         </script>
     </body>
 </html>
