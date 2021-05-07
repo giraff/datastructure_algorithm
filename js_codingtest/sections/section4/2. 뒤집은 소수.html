@@ -6,32 +6,25 @@
     <body>
         <script>
             function isPrime(n) {
-                // 1 이하면 소수 아님
-                if( n <= 1 ) return false;
-                // 2와 3은 소수
-                else if ( n === 2 || n === 3 ) return true;
-                // 짝수는 소수 아님
-                else if ( n % 2 === 0) return false;
-                // 홀수는 n-1 까지의 값으로 n을 나누어 0으로 떨어지면 소수 아님
-                else if ( n > 3 ) {
-                    let dividor = 3
-                    while( dividor < n ) {
-                        if(n % dividor === 0) return false;
-                        dividor += 2;
-                    } 
-                    return true;
+                // 1이하는 소수 아님
+                if(n <= 1) return false;
+                // 2 이상 부터 제곱근 까지 정도만 체크함
+                for(let i = 2; i <= parseInt(Math.sqrt(n)); i++) {
+                    // n이 각 수로 나누어 떨어지면 소수 아님
+                    if (n % i === 0) return false;
                 }
+                return true;
             }
             function solution(arr){
                 let answer=[];
                 
-                for(let i = 0; i < arr.length; i++) {
-                    let rev = 0;
-                    while(arr[i] != 0) {
-                        rev = rev * 10 + (arr[i] % 10);
-                        arr[i] = Math.floor(arr[i] / 10);
+                for(let data of arr) {
+                    let reverse = 0;
+                    while(data) {
+                        reverse = reverse * 10 + (data % 10);
+                        data = Math.floor(data / 10);
                     }
-                    if(isPrime(rev)) answer.push(rev);
+                    if(isPrime(reverse)) answer.push(reverse);
                 }
                 return answer;
             }
@@ -60,10 +53,12 @@
             }
             function solution(arr){
                 let answer=[];
-                for(let x of arr){
-                    let res=Number(x.toString().split('').reverse().join(''));
+                
+                for(let x of arr) {
+                    let res = Number(x.toString().split('').reverse().join(''));
                     if(isPrime(res)) answer.push(res);
                 }
+
                 return answer;
             }
             
