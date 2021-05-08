@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(board){  
+                let answer=0;
+                /*재귀를 이용해 미로 탐색*/
+                let dx = [0, 1, 0, -1];
+                let dy = [-1, 0, 1, 0];
+                // 12시, 3시, 6시, 9시 순서
+
+                function DFS(x, y) {
+                    if(x === 6 && y === 6) answer++;
+                    else {
+                        for(let k = 0 ; k < 4; k++) {
+                            // 새로운 x, y좌표 (나아갈 길)
+                            let nx = x + dx[k];
+                            let ny = y + dy[k];
+                            // 벽이 아니거나, 경계선 안의 값이면
+                            if(nx >= 0 && nx <= 6 && ny >= 0 && ny <= 6 && board[nx][ny] === 0) {
+                                // 전진
+                                board[nx][ny] = 1;
+                                // 재귀호출!
+                                DFS(nx, ny);
+                                // Back
+                                board[nx][ny] = 0;
+                            }
+                            
+                        }
+                    }
+                }
+
+                // 출발지는 미리 1로 셋팅) 지나온 길 : 1 , Back 했거나 미탐색: 0
+                board[0][0] = 1;
+                DFS(0,0);
+                return answer;
+            }
+
+            let arr=[[0, 0, 0, 0, 0, 0, 0], 
+                     [0, 1, 1, 1, 1, 1, 0],
+                     [0, 0, 0, 1, 0, 0, 0],
+                     [1, 1, 0, 1, 0, 1, 1],
+                     [1, 1, 0, 0, 0, 0, 1],
+                     [1, 1, 0, 1, 1, 0, 0],
+                     [1, 0, 0, 0, 0, 0, 0]];
+
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
