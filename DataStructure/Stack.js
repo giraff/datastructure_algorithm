@@ -16,7 +16,30 @@ stack.push(1);
 stack.push(2);
 stack.push(3);
 
-stack[stack.length - 1];
-stack.pop();
-stack.pop();
-stack.pop();
+console.log(stack[stack.length - 1]); // peek 3
+console.log(stack.pop()); // 3
+console.log(stack.pop()); // 2
+console.log(stack.pop()); // 1
+
+// 스택 구현 : 배열 이용
+class Stack {
+  constructor() {
+    this._arr = [];
+  }
+  push(item) {
+    this._arr.push(item);
+  }
+  pop() {
+    this._arr.pop();
+  }
+  peek() {
+    return this._arr[this._arr.length - 1];
+  }
+}
+
+const stackInstance = new Stack();
+stackInstance.push(1);
+stackInstance.push(2);
+stackInstance.push(3);
+stackInstance.pop();
+console.log(stackInstance.peek()); // Log: 2
