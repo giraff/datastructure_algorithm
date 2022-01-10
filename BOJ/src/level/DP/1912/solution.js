@@ -19,8 +19,6 @@ let Array = input().trim().split(" ");
 let value = +Array[0];
 let max = value;
 
-console.log(value, max);
-
 for (let i = 1; i < N; i++) {
   value = Math.max(+Array[i], +Array[i] + value);
   max = Math.max(value, max);
