@@ -2,12 +2,12 @@
 
 ## LinkedListNode
 
-```
+```javascript
 class LinkedListNode {
-    constructor(value, next = null) {
-        this.value = value;
-        this.next = next;
-    }
+  constructor(value, next = null) {
+    this.value = value;
+    this.next = next;
+  }
 }
 ```
 
@@ -15,7 +15,7 @@ class LinkedListNode {
 
 노드로 이루어진 링크드리스트는 다음과 같이 구현한다.
 
-```
+```javascript
 class LinkedList {
     constructor() {
         this.head = null,
@@ -30,24 +30,24 @@ class LinkedList {
 
 #### 1. iterative
 
-```
+```javascript
 function printNode(ListNode) {
-    let current_node = ListNode;
-    while (current_node !== null) {
-        console.log(current_node.value);
-        current_node = current_node.next;
-    }
+  let current_node = ListNode;
+  while (current_node !== null) {
+    console.log(current_node.value);
+    current_node = current_node.next;
+  }
 }
 ```
 
 #### 2. recursive
 
-```
+```javascript
 function printNodeWithRecursive(ListNode) {
-    console.log(ListNode.value);
-    while (ListNode.next !== null) {
-        printNode(ListNode.next);
-    }
+  console.log(ListNode.value);
+  while (ListNode.next !== null) {
+    printNode(ListNode.next);
+  }
 }
 ```
 
@@ -55,7 +55,7 @@ function printNodeWithRecursive(ListNode) {
 
 ### addAtHead(value)
 
-```
+```javascript
 addAtHead(value) { // O(1)
     // 1. 새 노드 생성
     let new_node = new LinkedListNode(value);
@@ -81,7 +81,7 @@ addAtHead(value) { // O(1)
 
 ### addBack(value)
 
-```
+```javascript
 addBack(value) {   // O(1)
   	// 1. 새 노드 생성
     let new_node = new LinkedListNode(value);
@@ -116,7 +116,7 @@ addBack(value) {   // O(1)
 
 ### find(value)
 
-```
+```javascript
 find(value) {
   	// 1. 빈 배열이면 찾을 수 없기에 null 반환
   	if(this.head === null) {
@@ -142,7 +142,7 @@ find(value) {
 
 ### addAfter(node: LinkedListNode, value)
 
-```
+```javascript
 addAfter(node, value) {
     if(node === null) {
         return null;
@@ -170,7 +170,7 @@ addAfter(node, value) {
 
 ### deleteAfter(prev_node: LinkedListNode)
 
-```
+```javascript
 deleteAfter(prev_node) {
     let delete_node = null;
     if(prev_node.next !== null) {
@@ -187,7 +187,7 @@ deleteAfter(prev_node) {
 
 ### insert(value, rawIndex)
 
-```
+```javascript
 
 insert(value, rawIndex) {
     // rawIndex arguments 검증
@@ -232,7 +232,7 @@ insert(value, rawIndex) {
 
 ### delete(value)
 
-```
+```javascript
 delete(value) {
     // 1. 빈 링크드 리스트의 경우 null 반환
     if(this.head === null) {
@@ -281,7 +281,7 @@ delete(value) {
 
 ### deleteTail
 
-```
+```javascript
 // deleteTail
 deleteTail() {
     const deletedTail = this.tail;
@@ -313,7 +313,7 @@ deleteTail() {
 
 ### deleteHead
 
-```
+```javascript
 deleteHead() {
 // 1. 빈 링크드 리스트이면 null 반환
     if(this.head === null) {
@@ -336,7 +336,7 @@ deleteHead() {
 
 ### fromArray
 
-```
+```javascript
 fromArray(values) {
     values.forEach((value) => this.addBack(value));
 
@@ -348,7 +348,7 @@ fromArray(values) {
 
 ### toArray
 
-```
+```javascript
 toValueArray() {
       const nodes = [];
 
@@ -377,7 +377,7 @@ toNodeArray() {
 
 ### reverse
 
-```
+```javascript
 reverse() {
     let cur_node = this.head;
     let prev_node = null;
