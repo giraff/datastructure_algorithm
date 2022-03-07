@@ -1,5 +1,32 @@
 # Linked List
 
+- LinkedListNode
+- LinkedList
+- printNodes
+  - iterative
+  - recursive
+- addAtHead
+- addBack
+- addAfter
+- insert
+- find
+- deleteHead
+- deleteTail
+- deleteAfter
+- delete
+- fromArray
+- toArray
+  - toNodeArray
+  - toValueArray
+- reverse
+
+## Time Complexity
+
+| Access    | Search    | Insertion | Deletion  |
+| :-------: | :-------: | :-------: | :-------: |
+| O(n)      | O(n)      | O(1)      | O(n)      |
+
+
 ## LinkedListNode
 
 ```javascript
