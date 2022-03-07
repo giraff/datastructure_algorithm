@@ -10,6 +10,16 @@ class DoublyLinkedListNode {
   }
 }
 
+function printNodes(node) {
+  let current_node = node;
+  let arr = [];
+  while (current_node) {
+    arr.push(current_node.value);
+    current_node = current_node.next;
+  }
+  return console.log(arr.join(" "));
+}
+
 class DoublyLinkedList {
   constructor() {
     this.head = null;
@@ -33,20 +43,27 @@ class DoublyLinkedList {
     if (!this.tail) {
       this.tail = new_node;
     }
+
+    return this;
   }
 
-  append() {
+  append(value) {
     const new_node = new DoublyLinkedListNode(value);
 
     if (!this.head) {
       this.head = new_node;
       this.tail = new_node;
+
+      return this;
     }
 
     this.tail.next = new_node;
     new_node.prev = this.tail;
     this.tail = new_node;
+
+    return this;
   }
+
   delete(value) {
     // 빈 리스트의 경우 null 반환
     if (!this.head) {
@@ -111,20 +128,21 @@ class DoublyLinkedList {
     if (!this.tail) {
       return null;
     }
-    let deletedTail = null;
     // 2. 링크드 리스트에 노드가 단 한개 (this.head === this.tail)
     if (this.head === this.tail) {
-      deletedTail = this.tail;
+      const deletedTail = this.tail;
       this.head = null;
       this.tail = null;
+
       return deletedTail;
     }
     // 3. 링크드 리스트에 노드가 n개 (n>1),
-    deletedTail = this.tail;
+    const deletedTail = this.tail;
+
     this.tail = this.tail.prev;
     this.tail.next = null;
 
-    return deleteTail;
+    return deletedTail;
   }
   /***
    * @return {DoublyLinkedListNode}
@@ -145,6 +163,7 @@ class DoublyLinkedList {
     }
     return deletedHead;
   }
+
   toValueArray() {
     let values = [];
 
@@ -155,6 +174,7 @@ class DoublyLinkedList {
     }
     return values;
   }
+
   toNodeArray() {
     let nodes = [];
     let currentNode = this.head;
@@ -195,3 +215,13 @@ class DoublyLinkedList {
     return this;
   }
 }
+
+let test = new DoublyLinkedList();
+let tt = test.fromArray([1, 2, 3, 4]);
+printNodes(tt.head);
+tt.reverse();
+tt.append(6);
+tt.prepend(11);
+tt.deleteTail();
+tt.deleteHead();
+printNodes(tt.head);
