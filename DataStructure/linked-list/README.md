@@ -1,5 +1,25 @@
 # Linked List
 
+- LinkedListNode
+- LinkedList
+- printNodes
+  - iterative
+  - recursive
+- addAtHead
+- addBack
+- addAfter
+- insert
+- find
+- deleteHead
+- deleteTail
+- deleteAfter
+- delete
+- fromArray
+- toArray
+  - toNodeArray
+  - toValueArray
+- reverse
+
 ## LinkedListNode
 
 ```javascript
