@@ -12,11 +12,15 @@
 // 모든 기초 동작들을 거의 암기 수준으로 완벽하게 알아야 한다
 // tree, graph의 기초 동작이 되기때문이다.
 
-class LinkedListNode {
+export default class LinkedListNode {
   constructor(value, next = null) {
     // node에는 값을 저장하는 공간과 다음 노드를 가리키는 공간 2 가지로 정의된다.
     this.value = value;
     this.next = next;
+  }
+
+  toString() {
+    return `${this.value}`;
   }
 }
 
@@ -44,15 +48,15 @@ function printNodeWithRecursive(ListNode) {
   }
 }
 
-class LinkedList {
+export default class LinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
   }
 
   // 링크드 리스트 맨 앞에 노드 삽입
-  // prepend
-  addAtHead(value) {
+  // addAtHead
+  prepend(value) {
     // O(1)
     // 1. 새 노드 생성
     let new_node = new LinkedListNode(value);
@@ -70,8 +74,8 @@ class LinkedList {
   }
 
   // 링크드 리스트 맨 뒤에 노드 삽입
-  // append
-  addBack(value) {
+  // addBack
+  append(value) {
     // O(1)
     // 1. 새 노드 생성
     let new_node = new LinkedListNode(value);
@@ -92,7 +96,7 @@ class LinkedList {
     return this;
   }
 
-  addBackWithoutTail(value) {
+  appendWithoutTail(value) {
     // O(N)
     let new_node = new LinkedListNode(value);
     let current_node = this.head;
@@ -166,7 +170,7 @@ class LinkedList {
     // 1. index 가 0일때
     if (index === 0) {
       // 1. 헤드가 가리키는 위치에 삽입하기
-      this.addAtHead(value);
+      this.prepend(value);
     } else {
       //2. index가 0이 아닐때
       let count = 1;
@@ -284,7 +288,7 @@ class LinkedList {
   // fromArray
   // array of values that need to be converted to linked list
   fromArray(values) {
-    values.forEach((value) => this.addBack(value));
+    values.forEach((value) => this.append(value));
 
     return this;
   }
@@ -339,13 +343,17 @@ class LinkedList {
 
     return this;
   }
+
+  toString() {
+    return this.toNodeArray().map((node) => node.toString().toString());
+  }
 }
 
 let slist = new LinkedList();
-slist.addAtHead(1);
-slist.addAtHead(2);
-slist.addBack(3);
-slist.addBack(4);
+slist.prepend(1);
+slist.prepend(2);
+slist.append(3);
+slist.append(4);
 slist.addAfter(slist.find(2), 5);
 slist.deleteAfter(slist.find(2));
 slist.reverse(); // 거꾸로 돌리기

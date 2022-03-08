@@ -1,4 +1,4 @@
-class DoublyLinkedListNode {
+export default class DoublyLinkedListNode {
   constructor(value, next = null, prev = null) {
     this.value = value;
     this.next = next;
@@ -20,7 +20,7 @@ function printNodes(node) {
   return console.log(arr.join(" "));
 }
 
-class DoublyLinkedList {
+export default class DoublyLinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
