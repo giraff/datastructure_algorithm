@@ -81,6 +81,16 @@ export default class HashTable {
     return Object.hasOwnProperty.call(this.keys, key);
   }
   // getKeys
-
+  getKeys() {
+    return Object.keys(this.keys);
+  }
   // getValues
+  getValues() {
+    return this.buckets.reduce((values, bucket) => {
+      const bucketValues = bucket
+        .toArray()
+        .map((linkedListNode) => linkedListNode.value.value);
+      return values.concat(bucketValues);
+    }, []);
+  }
 }
