@@ -118,16 +118,20 @@ export default class LinkedList {
   // find(value) - O(N)
   // 우리가 찾고 있는 value가 나올때까지 traverse
   // 찾고 있던 value라면 return node
-  find(value) {
+  find({value = undefined, callback = undefined}) {
     // 1. 빈 배열이면 찾을 수 없기에 null 반환
-    if (this.head === null) {
+    if (!this.head) {
       return null;
     }
 
     let current_node = this.head;
 
-    while (current_node !== null) {
-      if (current_node.value === value) {
+    while (current_node) {
+      if(callback && callback(current_node.value)) {
+        return current_node;
+      }
+
+      if (value !== undefined && current_node.value === value) {
         return current_node;
       }
       current_node = current_node.next;
