@@ -12,7 +12,7 @@
 // 모든 기초 동작들을 거의 암기 수준으로 완벽하게 알아야 한다
 // tree, graph의 기초 동작이 되기때문이다.
 
-export default class LinkedListNode {
+class LinkedListNode {
   constructor(value, next = null) {
     // node에는 값을 저장하는 공간과 다음 노드를 가리키는 공간 2 가지로 정의된다.
     this.value = value;
@@ -48,7 +48,7 @@ function printNodeWithRecursive(ListNode) {
   }
 }
 
-export default class LinkedList {
+class LinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
@@ -118,7 +118,7 @@ export default class LinkedList {
   // find(value) - O(N)
   // 우리가 찾고 있는 value가 나올때까지 traverse
   // 찾고 있던 value라면 return node
-  find({value = undefined, callback = undefined}) {
+  find({ value = undefined, callback = undefined }) {
     // 1. 빈 배열이면 찾을 수 없기에 null 반환
     if (!this.head) {
       return null;
@@ -127,7 +127,7 @@ export default class LinkedList {
     let current_node = this.head;
 
     while (current_node) {
-      if(callback && callback(current_node.value)) {
+      if (callback && callback(current_node.value)) {
         return current_node;
       }
 
@@ -162,8 +162,8 @@ export default class LinkedList {
     if (prev_node.next !== null) {
       delete_node = prev_node.next;
       prev_node.next = prev_node.next.next;
-      return delete_node;
     }
+    return delete_node;
   }
   // 링크드 리스트에 아무것도없는 케이스 꼭 챙기기
 
@@ -242,6 +242,8 @@ export default class LinkedList {
     if (this.tail.value === value) {
       this.tail = current_node;
     }
+
+    return delete_node;
   }
   // deleteTail
   deleteTail() {
