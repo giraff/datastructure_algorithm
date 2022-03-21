@@ -29,3 +29,24 @@ class Stack {
     return this.arr.splice(0, this.index).join(" ");
   }
 }
+
+function testStack() {
+  let stack = new Stack();
+  stack.push(1);
+  stack.push(2);
+  stack.push(3);
+  console.log(`isEmpty?`, stack.isEmpty());
+  console.log(`delete: `, stack.pop());
+  console.log(`delete: `, stack.pop());
+  console.log(`delete: `, stack.pop());
+  console.log(`isEmpty?`, stack.isEmpty());
+  console.log(stack.printStack());
+  stack.push(4);
+  stack.push(5);
+  stack.push(6);
+  console.log(`peek:`, stack.peek());
+  console.log(`isEmpty?`, stack.isEmpty());
+  console.log(stack.printStack());
+
+  return;
+}
