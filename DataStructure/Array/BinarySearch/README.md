@@ -18,20 +18,25 @@ left가 right보다 작은 동안 특정 과정을 반복한다
 4. 여기서 left와 right의 위치가 바뀐다면 찾는 값이 없다는 의미이므로 -1를 반환한다.
 
 ```javascript
-  binarySearch(value) {
-  	let start = 0; // 배열 맨 왼쪽 인덱스
-    let end = this.arr.length - 1; // 배열 맨 오른쪽 인덱스
-
-    while(start <= end) {
-    	let pivot = math.floor((start + end) / 2);
-      if(this.arr[pivot] === value) {
-      	return pivot;
-      } else if(this.arr[pivot] > value) {
-      	end = pivot - 1;
-      } else {
-      	start = pivot + 1;
-      }
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var search = function (nums, target) {
+  let start = 0;
+  let end = nums.length - 1;
+  let pivot = 0;
+  while (start <= end) {
+    pivot = Math.floor((start + end) / 2);
+    if (nums[pivot] === target) {
+      return pivot;
+    } else if (nums[pivot] > target) {
+      end = pivot - 1;
+    } else {
+      start = pivot + 1;
     }
-    return -1;
   }
+  return -1;
+};
 ```
