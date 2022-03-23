@@ -62,3 +62,193 @@ right child = 부모 index * 2 + 2
 2. remove()
 3. heapifyUp()
 4. heapifyDown()
+
+### 기본 골격
+
+```javascript
+class MinHeap {
+  constructor() {
+    this.heap = [];
+  }
+
+  // 인덱스를 구하는 메소드
+  getLeftChildIdx(parentIdx) {return parentIdx * 2 + 1;}
+  getRightChildIdx(parentIdx) {return parentIdx * 2 + 2;}
+  getParentIdx(childIdx) {return math.floor((childIdx - 1) / 2);}
+  // 있는지 없는지 여부
+  hasLeftChild(parentIdx) {
+    return this.getLeftChildIdx(parentIdx) < this.heap.length;
+  }
+  hasRightChild(parentIdx) {
+    return this.getRightChildIdx(parentIdx) < this.heap.length;
+  }
+  hasParent(childIdx) {
+    return this.getParentIdx(childIdx) >= 0;
+  }
+  // 값을 구하는 메소드
+  leftChild(parentIdx) {return
+    this.heap[this.getLeftChildIdx(parentIdx)]
+  }
+  rightChild(parentIdx) {
+    return this.heap[this.getRightChildIdx(parentIdx)];
+  }
+  parent(childIdx) {
+    return this.heap[this.getParentIdx(childIdx)];
+  }
+  // 최상위 노드(root)를 구하는 peek 메소드
+  peek() {
+    if (this.heap.length === 0) return null;
+    return this.heap[0];
+  }
+```
+
+### 삽입 insert
+
+```javascript
+class Heap {
+    ...
+    insert(value) {
+      this.heap.push(value);
+      this.heapifyUp();
+    }
+}
+```
+
+### heapifyUp
+
+최근 삽입한 노드가 제자리를 찾아 갈 수 있도록 아래로부터 위로 끌어올려야 한다.
+
+```javascript
+class MinHeap {
+  ...
+  heapifyUp() {
+    let index = this.heap.length - 1;
+    let lastInsertedNode = this.heap[index];
+
+    while (index > 0) {
+      const parentIndex = this.getParentIdx(index);
+      if (this.heap[parentIndex] > lastInsertedNode) {
+        this.heap[index] = this.heap[parentIndex];
+        index = parentIndex;
+      } else break;
+    }
+
+    // break 를 만나서 자신의 자리를 찾은 상황.
+    // 마지막 정착된 곳이 가장 나중에 들어온 노드가 들어갈 자리다.
+    this.heap[index] = lastInsertedNode;
+  }
+}
+```
+
+- 변수 index는 계속해서 방금 들어온 노드의 위치를 탐색하기 위해서 변하는 값이다.
+- lastInsertedNode : 최근에 삽입된 노드의 정보를 기억해놓는다
+- index가 root node가 되기 전 본인의 자리를 찾아가도록 while 문을 반환한다
+- 현재 탐색하고 있는 노드의 부모 노드 값이 최근 삽입된 노드보다 크다면 탐색 중인 노드를 대체한다 (우선순위가 낮으니까)
+- 부모 노드의 key가 방금 삽입된 노드와 키 값이 작거나 같다면 자신의 위치를 찾은 것이므로 break;
+- 최종 index가 방금 삽입된 노드의 위치가 된다.
+
+```javascript
+class MaxHeap {
+  ...
+  heapifyUp() {
+    let index = this.heap.length - 1;
+    let lastInsertedNode = this.heap[index];
+
+    while (index > 0) {
+      const parentIndex = this.getParentIdx(index);
+      if (this.heap[parentIndex] < lastInsertedNode) {
+        this.heap[index] = this.heap[parentIndex];
+        index = parentIndex;
+      } else break;
+    }
+
+    // break 를 만나서 자신의 자리를 찾은 상황.
+    // 마지막 정착된 곳이 가장 나중에 들어온 노드가 들어갈 자리다.
+    this.heap[index] = lastInsertedNode;
+  }
+}
+
+```
+
+### remove 삭제
+
+```javascript
+class Heap {
+    ...
+    remove() {
+      const count = this.heap.length;
+      if(count <= 0) return undefined;
+
+      const rootNode = this.heap[0];
+      if(count === 1) this.heap = [];
+      else {
+        this.heap[0] = this.heap.pop();
+        this.heapifyDown();
+      }
+
+      return rootNode;
+    }
+}
+```
+
+1. 최상위 노드를 꺼낸다
+2. 이때 배열 안에 요소가 2개 이상 남아있다면 끝에 있는 노드를 최상위 부모로 만든다.
+3. MinHeap의 형태를 갖추도록 조정한다.
+
+### heapifyDown
+
+위에서 아래로 끌어 내려야 하기 때문에 함수 이름은 heapifyDown
+
+### 최소힙의 경우
+
+```javascript
+class MinHeap {
+  ...
+  heapifyDown() {
+    let index = 0;
+    let count = this.heap.length;
+    let rootNode = this.heap[index];
+
+    while(this.getLeftChildIndex(index) < count) {
+      let leftChildIndex = this.getLeftChildIndex(index);
+      let rightChildIndex = this.getRightChildIndex(index);
+
+      // 자식 노드 중 더 작은 노드를 찾아서 부모 노드보다 값이 작다면 부모 노드의 값과 변환
+      const smaller = rightChildIndex < count && this.heap[rightChildIndex] < this.heap[leftChildIndex] ? rightChildIndex : leftChildIndex;
+
+      if(this.heap[smaller] < rootNode) {
+        this.heap[index] = this.heap[smaller];
+        index = smaller;
+      } else break;
+    }
+    this.heap[index] = rootNode;
+  }
+}
+```
+
+### 최대힙의 경우
+
+```javascript
+class MinHeap {
+  ...
+  heapifyDown() {
+    let index = 0;
+    let count = this.heap.length;
+    let rootNode = this.heap[index];
+
+    while(this.getLeftChildIndex(index) < count) {
+      let leftChildIndex = this.getLeftChildIndex(index);
+      let rightChildIndex = this.getRightChildIndex(index);
+
+      // 자식 노드 중 더 작은 노드를 찾아서 부모 노드보다 값이 작다면 부모 노드의 값과 변환
+      const smaller = rightChildIndex < count && this.heap[rightChildIndex] < this.heap[leftChildIndex] ? rightChildIndex : leftChildIndex;
+
+      if(this.heap[smaller] < rootNode) {
+        this.heap[index] = this.heap[smaller];
+        index = smaller;
+      } else break;
+    }
+    this.heap[index] = rootNode;
+  }
+}
+```
