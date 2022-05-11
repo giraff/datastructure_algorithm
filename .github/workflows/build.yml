@@ -20,9 +20,5 @@ jobs:
           description: |
             오늘 배운 것들을 정리하는 곳 ✨
 
-| Main Contributors                   | Contribute Lists            | About Me |
-| ----------------------------------- | --------------------------- | -------- |
-| [giraff](https://github.com/giraff) | - README 자동 업데이트 구현 | 🚧       |
-
           list_most_recent: 2 # optional, lists most recent TILS below description
           date_format: "2020 Jan 15:04" # optional, must align to https://golang.org/pkg/time/#Time.Format
