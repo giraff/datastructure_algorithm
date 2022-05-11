@@ -1,8 +1,7 @@
-# TIL
+# Algorithm and DataStructure
 
-> Today I Learned
-
-오늘 배운 것들을 정리하는 곳 ✨
+> I Learned
+> 알고리즘 문제 풀이와 자료구조에 대한 내용을 정리해놓았습니다.
 
 ### 🧪 기능 구현
 
