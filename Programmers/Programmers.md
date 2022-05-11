@@ -4,8 +4,8 @@
 
 🌱 프로그래머스의 [코딩테스트 문제](https://programmers.co.kr/learn/challenges?tab=all_challenges)의 문제 풀이를 찾으실 수 있습니다.
 
-[![thumbnail-coding-test-no-id](https://user-images.githubusercontent.com/54318460/158711288-5fbd903f-d3b6-4d56-bd1f-9e5946d67d0a.png)
-](https://github.com/codeisneverodd/programmers-coding-test/)
+[![thumbnail-coding-test-no-id](https://programmers.co.kr/assets/img-meta-programmers-e00862a7c9acd8ef5164f8c85b3ab0127d083ab59b3a98d7219690bd3570bf35.png)
+](https://github.com/giraff/datastructure_algorithm/)
 
 ## 🌟 Contributors
 
