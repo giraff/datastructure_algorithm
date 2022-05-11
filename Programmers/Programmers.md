@@ -92,18 +92,29 @@
 ### Level 2 👨🏻‍💻(풀이 중..)
 
 - 전체 문제 수: 64문제
-- 풀이 문제 수: 49문제
+- 풀이 문제 수: 21문제
 - 풀이 완료 예상 시점: 2022년 5월 중
 
-| 번호 | 문제 출처                                                                   | 풀이                                                                       | 체감 난이도 | 분류         |
-| ---- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ----------- | ------------ |
-| 1    | [124 나라의 숫자](https://programmers.co.kr/learn/courses/30/lessons/12899) | [124-나라의-숫자.js](https://github.com/giraff/level-2/124-나라의-숫자.js) | 최상        | 문자열, 구현 |
-| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
-| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
-| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
-| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
-| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
-| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
-| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
-| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
-| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
+| 번호 | 문제 출처                                                                           | 풀이                                                                       | 체감 난이도 | 분류         |
+| ---- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ----------- | ------------ |
+| 1    | [124 나라의 숫자](https://programmers.co.kr/learn/courses/30/lessons/12899)         | [124-나라의-숫자.js](https://github.com/giraff/level-2/124-나라의-숫자.js) | 최상        | 문자열, 구현 |
+| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)                 | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
+| 3    | [멀쩡한 사각형](https://programmers.co.kr/learn/courses/30/lessons/62048)           | [멀쩡한-사각형.js](https://github.com/giraff/level-2/H-Index.js)           | 중상        | 이진탐색     |
+| 4    | [기능개발](https://programmers.co.kr/learn/courses/30/lessons/42586)                | [기능개발.js](https://github.com/giraff/level-2/H-Index.js)                | 중상        | 이진탐색     |
+| 5    | [타겟 넘버](https://programmers.co.kr/learn/courses/30/lessons/43165)               | [타겟-넘버.js](https://github.com/giraff/level-2/H-Index.js)               | 중상        | 이진탐색     |
+| 6    | [짝지어 제거하기](https://programmers.co.kr/learn/courses/30/lessons/12973)         | [짝지어-제거하기.js](https://github.com/giraff/level-2/H-Index.js)         | 중상        | 이진탐색     |
+| 7    | [프린터](https://programmers.co.kr/learn/courses/30/lessons/42587)                  | [프린터.js](https://github.com/giraff/level-2/H-Index.js)                  | 중상        | 이진탐색     |
+| 8    | [가장 큰 수](https://programmers.co.kr/learn/courses/30/lessons/42746)              | [가장-큰-수.js](https://github.com/giraff/level-2/H-Index.js)              | 중상        | 이진탐색     |
+| 9    | [소수 찾기](https://programmers.co.kr/learn/courses/30/lessons/42839)               | [소수-찾기.js](https://github.com/giraff/level-2/H-Index.js)               | 중상        | 이진탐색     |
+| 10   | [카펫](https://programmers.co.kr/learn/courses/30/lessons/42842)                    | [카펫.js](https://github.com/giraff/level-2/H-Index.js)                    | 중상        | 이진탐색     |
+| 11   | [영어 끝말잇기](https://programmers.co.kr/learn/courses/30/lessons/12981)           | [영어-끝말잇기.js](https://github.com/giraff/level-2/H-Index.js)           | 중상        | 이진탐색     |
+| 12   | [이진 변환 반복하기](https://programmers.co.kr/learn/courses/30/lessons/70129)      | [이진-변환-반복하기.js](https://github.com/giraff/level-2/H-Index.js)      | 중상        | 이진탐색     |
+| 13   | [올바른 괄호](https://programmers.co.kr/learn/courses/30/lessons/12909)             | [올바른-괄호.js](https://github.com/giraff/level-2/H-Index.js)             | 중상        | 이진탐색     |
+| 14   | [다음 큰 숫자](https://programmers.co.kr/learn/courses/30/lessons/12911)            | [다음 큰 숫자.js](https://github.com/giraff/level-2/H-Index.js)            | 중상        | 이진탐색     |
+| 15   | [숫자의 표현](https://programmers.co.kr/learn/courses/30/lessons/12924)             | [숫자의 표현.js](https://github.com/giraff/level-2/H-Index.js)             | 중상        | 이진탐색     |
+| 16   | [최댓값과 최솟값](https://programmers.co.kr/learn/courses/30/lessons/12939)         | [최댓값과 최솟값.js](https://github.com/giraff/level-2/H-Index.js)         | 중상        | 이진탐색     |
+| 17   | [최솟값 만들기](https://programmers.co.kr/learn/courses/30/lessons/12941)           | [최솟값 만들기.js](https://github.com/giraff/level-2/H-Index.js)           | 중상        | 이진탐색     |
+| 18   | [피보나치 수](https://programmers.co.kr/learn/courses/30/lessons/12945)             | [피보나치 수.js](https://github.com/giraff/level-2/H-Index.js)             | 중상        | 이진탐색     |
+| 19   | [행렬의 곱셈](https://programmers.co.kr/learn/courses/30/lessons/12949)             | [행렬의 곱셈.js](https://github.com/giraff/level-2/H-Index.js)             | 중상        | 이진탐색     |
+| 20   | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase 문자열 만들기.js](https://github.com/giraff/level-2/H-Index.js) | 중상        | 이진탐색     |
+| 21   | [N개의 최소공배수](https://programmers.co.kr/learn/courses/30/lessons/12953)        | [N개의 최소공배수.js](https://github.com/giraff/level-2/H-Index.js)        | 중상        | 이진탐색     |
