@@ -1,7 +1,5 @@
 # Programmers
 
-# 프로그래머스 모든 문제 풀이
-
 [![방문자수](<https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/giraff/datastructure_algorithm&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=방문자수(Today/Total)&edge_flat=true>)](https://github.com/giraff)
 
 🌱 프로그래머스의 [코딩테스트 문제](https://programmers.co.kr/learn/challenges?tab=all_challenges)의 문제 풀이를 찾으실 수 있습니다.
@@ -29,7 +27,7 @@
 
 - 전체 문제 수: 55문제
 - 풀이 문제 수: 55문제
-- 풀이 완료 시점: 2022년 1월
+- 풀이 완료 시점: 2022년 3월
 
 | 번호 | 문제 출처                                                                                | 풀이                                                                                               |
 | ---- | ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
@@ -89,7 +87,7 @@
 | 54   | [핸드폰 번호 가리기](https://programmers.co.kr/learn/courses/30/lessons/12948)           | [핸드폰-번호-가리기.js](https://github.com/giraff/level-1/핸드폰-번호-가리기.js)                   |
 | 55   | [행렬의 덧셈](https://programmers.co.kr/learn/courses/30/lessons/12950)                  | [행렬의-덧셈.js](https://github.com/giraff/level-1/행렬의-덧셈.js)                                 |
 
-### Level 2 👨🏻‍💻(풀이 중..)
+### Level 2 (풀이 중..)
 
 - 전체 문제 수: 64문제
 - 풀이 문제 수: 21문제
@@ -119,7 +117,7 @@
 | 20   | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase 문자열 만들기.js](https://github.com/giraff/level-2/H-Index.js)                                   | 중상        | 이진탐색     |
 | 21   | [N개의 최소공배수](https://programmers.co.kr/learn/courses/30/lessons/12953)        | [N개의 최소공배수.js](https://github.com/giraff/level-2/H-Index.js)                                          | 중상        | 이진탐색     |
 
-### Level 3 👨🏻‍💻(풀이 중..)
+### Level 3 (풀이 중..)
 
 - 전체 문제 수: 52문제
 - 풀이 문제 수: 0문제
@@ -138,3 +136,7 @@
 | 9    | [입국심사](https://programmers.co.kr/learn/courses/30/lessons/43238)       | [입국심사.js](https://github.com/giraff/datastructure_algorithm/tree/main/Programmers/level-3/입국심사.js)             | 중상        | DP   |
 
 ### 디자인 참고한 레포지토리
+
+문제시 삭제하도록 하겠습니다.
+
+프로그래머스 모든 문제 풀이 [repo](https://github.com/codeisneverodd/programmers-coding-test)
