@@ -95,33 +95,15 @@
 - 풀이 문제 수: 49문제
 - 풀이 완료 예상 시점: 2022년 5월 중
 
-| 번호 | 문제 출처                                                                           | 풀이                                                                                       | 체감 난이도 |
-| ---- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ----------- |
-| 1    | [124 나라의 숫자](https://programmers.co.kr/learn/courses/30/lessons/12899)         | [124-나라의-숫자.js](https://github.com/giraff/level-2/124-나라의-숫자.js)                 | 최상        |
-| 2    | [2개 이하로 다른 비트](https://programmers.co.kr/learn/courses/30/lessons/77885)    | [2개-이하로-다른-비트.js](https://github.com/giraff/level-2/2개-이하로-다른-비트.js)       | ㅇ          |
-| 3    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)                 | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                                 | ㅇ          |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
-| 4    | [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951) | [JadenCase-문자열-만들기.js](https://github.com/giraff/level-2/JadenCase-문자열-만들기.js) | d           |
+| 번호 | 문제 출처                                                                   | 풀이                                                                       | 체감 난이도 | 분류         |
+| ---- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ----------- | ------------ |
+| 1    | [124 나라의 숫자](https://programmers.co.kr/learn/courses/30/lessons/12899) | [124-나라의-숫자.js](https://github.com/giraff/level-2/124-나라의-숫자.js) | 최상        | 문자열, 구현 |
+| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
+| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
+| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
+| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
+| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
+| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
+| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
+| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
+| 2    | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)         | [H-Index.js](https://github.com/giraff/level-2/H-Index.js)                 | 중상        | 이진탐색     |
