@@ -1,13 +1,8 @@
-# Algorithm and DataStructure
+# TIL
+> Today I Learned
 
-> I Learned
-> 알고리즘 문제 풀이와 자료구조에 대한 내용을 정리해놓았습니다.
+오늘 배운 것들을 정리하는 곳 ✨
 
-### 🧪 기능 구현
-
-| Main Contributors                   | Contribute Lists            | About Me |
-| ----------------------------------- | --------------------------- | -------- |
-| [giraff](https://github.com/giraff) | - README 자동 업데이트 구현 | 🚧       |
 
 _5 TILs and counting..._
 
@@ -25,13 +20,12 @@ _5 TILs and counting..._
 - [algorithm](#algorithm)
 
 ### [DataStructure](#DataStructure)
-
 - [자료구조](DataStructure/DataStructure.md)
 
 ### [Programmers](#Programmers)
-
 - [Programmers](Programmers/Programmers.md)
 
 ### [algorithm](#algorithm)
-
 - [algorithm](algorithm/algorithm.md)
+
+
