@@ -10,7 +10,7 @@ _5 TILs and counting..._
 
 ### 2 most recent TILs
 
-- [BOJ](BOJ/BOJwithJS.md) - Thu May 12 16:36:00 2022 +0900
+- [BOJ에서 JS 사용법](BOJ/BOJwithJS.md) - Thu May 12 16:36:00 2022 +0900
 - [BOJ](BOJ/boj.md) - Wed May 11 18:05:46 2022 +0900
 
 ### Categories
@@ -21,7 +21,7 @@ _5 TILs and counting..._
 - [algorithm](#algorithm)
 
 ### [BOJ](#BOJ)
-- [BOJ](BOJ/BOJwithJS.md)
+- [BOJ에서 JS 사용법](BOJ/BOJwithJS.md)
 - [BOJ](BOJ/boj.md)
 
 ### [DataStructure](#DataStructure)
