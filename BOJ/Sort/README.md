@@ -877,3 +877,801 @@ input 받을 때 trim() 쓰지 않았는지? 체크 ⇒ 단어 앞 뒤 공백이
 10814 **나이순 정렬 : sort 라이브러리**
 
 - 풀이
+    
+    ```jsx
+    온라인 저지에 가입한 사람들의 나이와 이름이 가입한 순서대로 주어진다. 
+    이때, 회원들을 나이가 증가하는 순으로, 
+    나이가 같으면 먼저 가입한 사람이 앞에 오는 순서로 정렬하는 프로그램을 작성하시오.
+    
+    input: 
+    첫째 줄에 온라인 저지 회원의 수 N이 주어진다. (1 ≤ N ≤ 100,000)
+    둘째 줄부터 N개의 줄에는 각 회원의 나이와 이름이 공백으로 구분되어 주어진다. 
+    나이는 1보다 크거나 같으며, 200보다 작거나 같은 정수이고, 
+    이름은 알파벳 대소문자로 이루어져 있고, 길이가 100보다 작거나 같은 문자열이다. 
+    입력은 가입한 순서로 주어진다.
+    
+    3
+    21 Junkyu
+    21 Dohyun
+    20 Sunyoung
+    
+    output: 
+    첫째 줄부터 총 N개의 줄에 걸쳐 온라인 저지 회원을 나이 순, 나이가 같으면 가입한 순으로 
+    한 줄에 한 명씩 나이와 이름을 공백으로 구분해 출력한다.
+    
+    20 Sunyoung
+    21 Junkyu
+    21 Dohyun
+    ```
+    
+    ```jsx
+    const [n, ...members] = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    
+    members.sort((a, b) => a.split(' ')[0] - b.split(' ')[0]);
+    
+    console.log(members.join('\n'));
+    ```
+    
+---
+**18870 좌표 압축 (1 ≤ N ≤ 1,000,000) 2초 , 512MB ⇒ 시간 초과 주의, map, set 활용**
+
+1초에 1억번 연산 가능 ⇒ 2초에 2억번 연산
+
+입력 데이터 N이 최대 1,000,000 이므로 ,N^2 알고리즘 쓰면 시간은 (1조)ms → 무조건 시간 초과
+
+- 풀이 (답 보고 품)
+    
+    ```jsx
+    수직선 위에 N개의 좌표 X1, X2, ..., XN이 있다. 이 좌표에 좌표 압축을 적용하려고 한다.
+    
+    Xi를 좌표 압축한 결과 X'i의 값은 Xi > Xj를 만족하는 서로 다른 좌표의 개수와 같아야 한다.
+    
+    X1, X2, ..., XN에 좌표 압축을 적용한 결과 X'1, X'2, ..., X'N를 출력해보자.
+    
+    /*
+    첫째 줄에 N이 주어진다.
+    
+    둘째 줄에는 공백 한 칸으로 구분된 X1, X2, ..., XN이 주어진다.
+    */
+    5
+    2 4 -10 4 -9
+    /*
+    첫째 줄에 X'1, X'2, ..., X'N을 공백 한 칸으로 구분해서 출력한다.
+    */
+    2 3 0 3 1
+    ```
+    
+    **idea 1) 시간 초과**
+    
+    기존 배열과 똑같은 보조 배열을 먼저 정렬을 한 후
+    
+    -10 -9 2 4 4
+    
+    중복을 제거하고
+    
+    -10 -9 2 4
+    
+    보조 배열의 인덱스 값을 기존 배열을 방문하면서 대입하면 됨 → 효율성은 장담 못함
+    
+    ```jsx
+    const [n, input] = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    
+    let tmp = input.split(' ').sort((a, b) => Number(a) - Number(b)); // 정렬
+    let arr = Array.from(new Set(tmp)); // 중복 제거
+    let result = []
+    input.split(' ').forEach(v => {
+        result.push(arr.indexOf(v))
+    })
+    
+    console.log(result.join(' '))
+    ```
+    
+    idea 2) ****
+    
+    string을 ‘ ‘ 공백 기준 쪼개서 숫자 배열을 만든 뒤 
+    
+    각 요소를 방문하여 그 요소보다 작은 값들로 필터링한 배열의 길이를 result에 추가하는 방식
+    
+    **메모리 초과**
+    
+    ```jsx
+    const [n, input] = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    
+    let result = [];
+    let newArr = input.split(' ').map(v => +v);
+    
+    newArr.forEach((value, idx) => {
+        result.push(newArr.filter(v => value > v).length)
+    });
+    
+    console.log(result.join(' '))
+    ```
+    
+    **idea 3) 답을 참고.**
+    
+    - 나를 제외한 나보다 작은 숫자라는 건 정렬된 배열의 index 값과 똑같다 → idea1 일때와 같은 생각
+    - 시간 초과가 중요한 문제. 아무생각 없이 이중 for문 돌리면 무조건 초과 뜬다
+    - 시간 초과를 방지하기 위해 js의 map과 set 구조를 이용하지 않으면 안된다.
+    
+    ```jsx
+    const [n, input] = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    
+    let result = [];
+    let arr = input.split(' ').map(v => +v).sort((a, b) => a - b); // 숫자 배열로
+    let set = Array.from(new Set(arr)); // 중복 제거
+    let map = new Map(); // 객체 map 생성
+    
+    set.forEach((item, index) => {
+        map.set(item, index); // key = item(integer), value = index
+    })
+    
+    input.split(' ').forEach((item, index) => {
+        result.push(map.get(+item));
+    })
+    
+    console.log(result.join(' '))
+    ```
+    
+---
+10825 **국영수 (1s, 256MB) : sort 라이브러리**
+
+- 풀이 : 5분내 풀이
+    
+    ```jsx
+    도현이네 반 학생 N명의 이름과 국어, 영어, 수학 점수가 주어진다. 이때, 다음과 같은 조건으로 학생의 성적을 정렬하는 프로그램을 작성하시오.
+    
+    국어 점수가 감소하는 순서로
+    국어 점수가 같으면 영어 점수가 증가하는 순서로
+    국어 점수와 영어 점수가 같으면 수학 점수가 감소하는 순서로
+    모든 점수가 같으면 이름이 사전 순으로 증가하는 순서로 
+    (단, 아스키 코드에서 대문자는 소문자보다 작으므로 사전순으로 앞에 온다.)
+    
+    input:
+    첫째 줄에 도현이네 반의 학생의 수 N (1 ≤ N ≤ 100,000)이 주어진다. 
+    둘째 줄부터 한 줄에 하나씩 각 학생의 이름, 국어, 영어, 수학 점수가 공백으로 구분해 주어진다. 
+    점수는 1보다 크거나 같고, 100보다 작거나 같은 자연수이다. 이름은 알파벳 대소문자로 이루어진 문자열이고, 
+    길이는 10자리를 넘지 않는다.
+    12
+    Junkyu 50 60 100
+    Sangkeun 80 60 50
+    Sunyoung 80 70 100
+    Soong 50 60 90
+    Haebin 50 60 100
+    Kangsoo 60 80 100
+    Donghyuk 80 60 100
+    Sei 70 70 70
+    Wonseob 70 70 90
+    Sanghyun 70 70 80
+    nsj 80 80 80
+    Taewhan 50 60 90
+    
+    output:
+    문제에 나와있는 정렬 기준으로 정렬한 후 첫째 줄부터 N개의 줄에 걸쳐 각 학생의 이름을 출력한다.
+    Donghyuk
+    Sangkeun
+    Sunyoung
+    nsj
+    Wonseob
+    Sanghyun
+    Sei
+    Kangsoo
+    Haebin
+    Junkyu
+    Soong
+    Taewhan
+    ```
+    
+    ```jsx
+    const [n, ...input] = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    
+    const students = input.map(v => v.split(' '));
+    
+    students.sort((a, b) => a[0] < b[0] ? -1 : 1);
+    students.sort((a, b) => b[3] - a[3]);
+    students.sort((a, b) => a[2] - b[2]);
+    students.sort((a, b) => b[1] - a[1]);
+    
+    let result = students.map(v => v[0]);
+    
+    console.log(result.join('\n'))
+    ```
+    
+---
+**11652** 카드 (1s, 256MB) : **map 정렬은 array로 변환 뒤 sort 해야 한다**
+
+- **JS의 2^53-1 이상의 수는 BigInt로 다루어야 한다**
+- 정렬한 다음 카운트를 세면서 가장 자주 나온 정수를 출력한다.
+- 풀이 (해결 못함. 답 봄)
+    
+    ```jsx
+    준규는 숫자 카드 N장을 가지고 있다. 숫자 카드에는 정수가 하나 적혀있는데, 적혀있는 수는 -2^62보다 크거나 같고, 2^62보다 작거나 같다. => 계수 정렬은 안된다
+    
+    준규가 가지고 있는 카드 중 가장 많이 가지고 있는 정수를 구하시오. 
+    만약, 가장 많이 가지고 있는 정수가 여러 가지라면, 작은 것을 출력한다.
+    
+    input: 첫째 줄에 준규가 가지고 있는 숫자 카드의 개수 N (1 ≤ N ≤ 100,000)이 주어진다. 
+    둘째 줄부터 N개 줄에는 숫자 카드에 적혀있는 정수가 주어진다.
+    5
+    1
+    2
+    1
+    2
+    1
+    output: 첫째 줄에 준규가 가장 많이 가지고 있는 정수를 출력한다.
+    1
+    
+    //
+    6
+    1
+    2
+    1
+    2
+    1
+    2
+    
+    1
+    ```
+    
+    **map 사용 ⇒ TypeError 뜸**
+    
+    ```jsx
+    const [n, ...input] = 
+          require('fs').readFileSync('/dev/stdin').toString().
+    trim().split('\n');
+    
+    let map = new Map();
+    
+    input.forEach((v, i) => {
+        if(map.get(v)) {
+            map.set(v, map.get(v) + 1);
+        } else {
+            map.set(v, 1);
+        }
+    });
+    
+    let mapToArr = [...map];
+    
+    mapToArr.sort((a, b) => +a[0] - +b[0]);
+    mapToArr.sort((a, b) => b[1] - a[1]);
+    
+    console.log(mapToArr[0][0])
+    ```
+    
+    ⇒ **틀렸습니다.**
+    
+    - 틀렸길래 살펴보니 입력 범위가 -2^62부터 2^62까지인 것을 간과했다
+    - BOJ는 출력할 때는 toString으로 해야한다
+    - js에서 큰 숫자는 따로 BigInt를 이용해야한다.
+    
+    **BigInt**
+    
+    - Number 원시 값이 안정적으로 나타나낼 수 있는 최대치인 2^53-1 보다 큰 정수를 표현할 수 있는 내장 객체이다.
+    - 배열의 요소로 있을 때는 정렬도 가능하다
+    - 정수 리터럴 뒤에 n을 붙이거나 BigInt 함수를 호출해 생성할 수 있다.
+    
+    **남의 코드** 
+    
+    ```jsx
+    const input = require("fs")
+      .readFileSync("/dev/stdin")
+      .toString()
+      .trim()
+      .split("\n")
+      .map((v) => BigInt(v));
+    
+    const [, ...numbers] = input;
+    numbers.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+    // 정렬을 해둠
+    // [1,2,1,2,1,2] 라면 [1,1,1,2,2,2] 가 되도록
+    let count = 1;
+    let maxValue = numbers[0];
+    let maxCount = 0;
+    
+    // 배열을 돌면서 count를 세고 최대 카운트와 그 카운트의 value 값 저장
+    numbers.forEach((v, i) => {
+      next = numbers[i + 1];
+      if (v === next) {
+        count++;
+      } else {
+        count = 1;
+      }
+    
+      if (count > maxCount) {
+        maxCount = count;
+        maxValue = v;
+      }
+    });
+    
+    // String으로 출력
+    console.log(String(maxValue));
+    ```
+    
+---
+**11004** K번째 수 (2s, 512MB) 못풀것다 지랄맞다
+
+- 풀이
+    
+    ```jsx
+    수 N개 A1, A2, ..., AN이 주어진다. A를 오름차순 정렬했을 때, 
+    앞에서부터 K번째 있는 수를 구하는 프로그램을 작성하시오.
+    
+    /*첫째 줄에 N(1 ≤ N ≤ 5,000,000)과 K (1 ≤ K ≤ N)이 주어진다.
+    
+    둘째에는 A1, A2, ..., AN이 주어진다. (-109 ≤ Ai ≤ 109)*/
+    input:
+    5 2
+    4 1 2 3 5
+    /* A를 정렬했을 때, 앞에서부터 K번째 있는 수를 출력한다. */
+    output:
+    2
+    ```
+    
+    ```jsx
+    arr = new Array(5000001).fill(0)
+    
+    ```
+    
+---
+10828 **스택: array 메소드 pop, push, length 이용**
+
+- arr, res 두 배열을 두고 각 명령문에 대한 조건 분기에 따라 res에 채운 뒤 출력
+- 풀이
+    
+    ```jsx
+    정수를 저장하는 스택을 구현한 다음, 입력으로 주어지는 명령을 처리하는 프로그램을 작성하시오.
+    
+    명령은 총 다섯 가지이다.
+    
+    push X: 정수 X를 스택에 넣는 연산이다.
+    pop: 스택에서 가장 위에 있는 정수를 빼고, 그 수를 출력한다. 
+    			만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+    size: 스택에 들어있는 정수의 개수를 출력한다.
+    empty: 스택이 비어있으면 1, 아니면 0을 출력한다.
+    top: 스택의 가장 위에 있는 정수를 출력한다. 
+    		 만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+    
+    /*
+    첫째 줄에 주어지는 명령의 수 N (1 ≤ N ≤ 10,000)이 주어진다. 
+    둘째 줄부터 N개의 줄에는 명령이 하나씩 주어진다. 
+    주어지는 정수는 1보다 크거나 같고, 100,000보다 작거나 같다. 
+    문제에 나와있지 않은 명령이 주어지는 경우는 없다.
+    */
+    input: 
+    14
+    push 1
+    push 2
+    top
+    size
+    empty
+    pop
+    pop
+    pop
+    size
+    empty
+    pop
+    push 3
+    empty
+    top
+    /*출력해야하는 명령이 주어질 때마다, 한 줄에 하나씩 출력한다.*/
+    2
+    2
+    0
+    2
+    1
+    -1
+    0
+    1
+    -1
+    0
+    3
+    ```
+    
+    ```jsx
+    const [k, ...strs] = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    
+    let arr = [];
+    let res = [];
+    
+    strs.forEach((item, idx) => {
+        if(item.split(' ')[0] === 'push') {
+            arr.push(+item.split(' ')[1]);
+        } else if(item.split(' ')[0] === 'size') {
+            res.push(arr.length);
+        } else if(item.split(' ')[0] === 'empty') {
+            res.push(arr.length === 0 ? 1 : 0);
+        } else if(item.split(' ')[0] === 'top') {
+            res.push(arr.length === 0 ? -1 : arr[arr.length - 1]);
+        } else if(item.split(' ')[0] === 'pop') {
+            res.push(arr.length === 0 ? -1 : arr.pop());        
+        }
+    });
+    
+    console.log(res.join('\n'))
+    ```
+    
+---
+9012 괄호
+
+- 풀이
+    
+    ```jsx
+    괄호 문자열(Parenthesis String, PS)은 두 개의 괄호 기호인 ‘(’ 와 ‘)’ 만으로 구성되어 있는 문자열이다. 
+    그 중에서 괄호의 모양이 바르게 구성된 문자열을 올바른 괄호 문자열(Valid PS, VPS)이라고 부른다.
+    한 쌍의 괄호 기호로 된 “( )” 문자열은 기본 VPS 이라고 부른다. 
+    만일 x 가 VPS 라면 이것을 하나의 괄호에 넣은 새로운 문자열 “(x)”도 VPS 가 된다. 
+    그리고 두 VPS x 와 y를 접합(concatenation)시킨 새로운 문자열 xy도 VPS 가 된다. 
+    예를 들어 “(())()”와 “((()))” 는 VPS 이지만 “(()(”, “(())()))” , 그리고 “(()” 는 모두 VPS 가 아닌 문자열이다. 
+    
+    여러분은 입력으로 주어진 괄호 문자열이 VPS 인지 아닌지를 판단해서 그 결과를 YES 와 NO 로 나타내어야 한다.
+    
+    /*
+    입력 데이터는 표준 입력을 사용한다. 입력은 T개의 테스트 데이터로 주어진다. 
+    입력의 첫 번째 줄에는 입력 데이터의 수를 나타내는 정수 T가 주어진다. 
+    각 테스트 데이터의 첫째 줄에는 괄호 문자열이 한 줄에 주어진다. 하나의 괄호 문자열의 길이는 2 이상 50 이하이다.
+    */
+    6
+    (())())
+    (((()())()
+    (()())((()))
+    ((()()(()))(((())))()
+    ()()()()(()()())()
+    (()((())()(
+    
+    /*
+    출력은 표준 출력을 사용한다. 
+    만일 입력 괄호 문자열이 올바른 괄호 문자열(VPS)이면 “YES”, 아니면 “NO”를 한 줄에 하나씩 차례대로 출력해야 한다.
+    */
+    NO
+    NO
+    YES
+    NO
+    YES
+    NO
+    ```
+    
+    ```jsx
+    const [n, ...input] = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    
+    let result = [];
+    
+    input.forEach((item, index) => {
+        let valid = true
+        let tmp = item.split('');
+        let stack = [];
+        for(let i = 0; i < tmp.length; i++) {
+            if(tmp[i] === '(') {
+                stack.push('(');
+            } else if(tmp[i] === ')') {
+                if(stack.length === 0) {
+                    valid = false;
+                    break;
+                } else {
+                    stack.pop();
+                }
+            }
+        }
+        
+        if(!valid || stack.length > 0) {
+            result.push('NO')
+        } else {
+            result.push('YES')
+        }
+    })
+    
+    console.log(result.join('\n'))
+    ```
+    
+    **나의 idea)**
+    
+    - stack 자료구조를 이용한다
+    - ( 가 들어오면 stack에 push를 하고, )가 들어오면 stack을 pop한다.
+    - 만약 stack이 empty인 데 pop 요청이 들어오면 VPS가 NO
+    - 모든 탐색을 끝냈는데 stack이 empty가 아닌 경우에도 VPS가 NO이다.
+    - 나머지의 경우에는 VPS가 YES이다.
+    - valid check를 넣느냐 안 넣느냐 차이가컸다. 아마 break를 했을 때 stack.length 가 0인 경우에 그런 것 같다.
+
+---
+10799 **쇠막대기 (1s, 256MB)**
+
+- 풀이
+    
+    여러 개의 쇠막대기를 레이저로 절단하려고 한다. 효율적인 작업을 위해서 쇠막대기를 아래에서 위로 겹쳐 놓고, 레이저를 위에서 수직으로 발사하여 쇠막대기들을 자른다. 쇠막대기와 레이저의 배치는 다음 조건을 만족한다.
+    
+    - **쇠막대기는 자신보다 긴 쇠막대기 위에만 놓일 수 있다**. - 쇠막대기를 다른 쇠막대기 위에 놓는 경우 완전히 포함되도록 놓되, 끝점은 겹치지 않도록 놓는다. ⇒ stack을 적용하게끔 한 문제
+    - 각 쇠막대기를 자르는 레이저는 적어도 하나 존재한다.
+    - 레이저는 어떤 쇠막대기의 양 끝점과도 겹치지 않는다.
+    
+    아래 그림은 위 조건을 만족하는 예를 보여준다. 수평으로 그려진 굵은 실선은 쇠막대기이고, 점은 레이저의 위치, 수직으로 그려진 점선 화살표는 레이저의 발사 방향이다.
+    
+    ![https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/10799/1.png](https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/10799/1.png)
+    
+    이러한 레이저와 쇠막대기의 배치는 다음과 같이 괄호를 이용하여 왼쪽부터 순서대로 표현할 수 있다.
+    
+    1. 레이저는 여는 괄호와 닫는 괄호의 인접한 쌍 ‘( ) ’ 으로 표현된다. 또한, 모든 ‘( ) ’는 반드시 레이저를 표현한다.
+    2. 쇠막대기의 왼쪽 끝은 여는 괄호 ‘ ( ’ 로, 오른쪽 끝은 닫힌 괄호 ‘) ’ 로 표현된다.
+    
+    위 예의 괄호 표현은 그림 위에 주어져 있다.
+    
+    쇠막대기는 레이저에 의해 몇 개의 조각으로 잘려지는데, 위 예에서 가장 위에 있는 두 개의 쇠막대기는 각각 3개와 2개의 조각으로 잘려지고, 이와 같은 방식으로 주어진 쇠막대기들은 총 17개의 조각으로 잘려진다.
+    
+    쇠막대기와 레이저의 배치를 나타내는 괄호 표현이 주어졌을 때, 잘려진 쇠막대기 조각의 총 개수를 구하는 프로그램을 작성하시오
+    
+    ```jsx
+    /* 한 줄에 쇠막대기와 레이저의 배치를 나타내는 괄호 표현이 공백없이 주어진다. 
+    괄호 문자의 개수는 최대 100,000이다 */
+    ()(((()())(())()))(())
+    
+    /* 잘려진 조각의 총 개수를 나타내는 정수를 한 줄에 출력한다.*/
+    17
+    ```
+    
+    **idea) 객체배열을 사용하여 새로운 막대가 추가되면 array에 추가하고 
+    각각의 막대가 raser을 맞은 횟수를 카운트 한다.  ⇒ 메모리 초과**
+    
+    ```jsx
+    let tmp = `()(((()())(())()))(())`
+    
+    // let input = tmp.split('')
+    
+    let sum = 0;
+    // let raser = false;
+    let stack = [];
+    
+    for(let i = 0 ; i < tmp.length; i++) {
+        if(tmp[i] == '(') {
+    				// 여는 괄호일 때 stack의 모든 요소를 방문하며 
+            stack = stack.map(v => {
+                return {raser: v.raser, length: v.length + 1}
+            })
+            stack.push({raser: 0, length:0})
+        } else if(tmp[i] === ')') {
+            let top = stack.pop();
+            if(top.length == 0) {
+                // raser
+                stack = stack.map(v => {
+                    return {
+                        raser: v.raser+1,
+                        length: v.length + 1
+                    }
+                })
+            } else {
+                // raser 아님
+                sum += top.raser + 1;
+                stack = stack.map(v => {
+                    return {
+                        raser: v.raser,
+                        length: v.length + 1
+                    }
+                })
+            }
+        }
+    }
+    ```
+    
+    - **여는 괄호를 만나면 전부 스택에 push 하다가, 닫는 괄호를 만나면 스택에서 pop하고 괄호가 레이저면, 파이프 끝이면 1만 더해주면 된다**
+    
+    ```jsx
+    let str = require('fs').readFileSync('/dev/stdin').toString().trim();
+    
+    let stack = []; // 스택
+    let sum = 0; // 조각 갯수 합
+    
+    for(let i = 0 ; i < str.length; i++) {
+        if (str[i] == '(') {
+            stack.push('(');
+        } else if (str[i] === ')') {
+            stack.pop();
+            if (str[i-1] === '(') {
+                sum += stack.length;
+            } else { 
+                sum += 1;
+            }
+        }
+    }
+    
+    console.log(sum);
+    ```
+    
+---
+10845 큐 
+
+- 풀이
+    
+    ```jsx
+    정수를 저장하는 큐를 구현한 다음, 입력으로 주어지는 명령을 처리하는 프로그램을 작성하시오.
+    
+    명령은 총 여섯 가지이다.
+    
+    push X: 정수 X를 큐에 넣는 연산이다.
+    pop: 큐에서 가장 앞에 있는 정수를 빼고, 그 수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+    size: 큐에 들어있는 정수의 개수를 출력한다.
+    empty: 큐가 비어있으면 1, 아니면 0을 출력한다.
+    front: 큐의 가장 앞에 있는 정수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+    back: 큐의 가장 뒤에 있는 정수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+    
+    /*
+    첫째 줄에 주어지는 명령의 수 N (1 ≤ N ≤ 10,000)이 주어진다. 둘째 줄부터 N개의 줄에는 명령이 하나씩 주어진다. 주어지는 정수는 1보다 크거나 같고, 100,000보다 작거나 같다. 문제에 나와있지 않은 명령이 주어지는 경우는 없다.
+    */
+    15
+    push 1
+    push 2
+    front
+    back
+    size
+    empty
+    pop
+    pop
+    pop
+    size
+    empty
+    pop
+    push 3
+    empty
+    front
+    
+    /* 출력해야하는 명령이 주어질 때마다, 한 줄에 하나씩 출력한다. */
+    1
+    2
+    2
+    0
+    1
+    2
+    -1
+    0
+    1
+    -1
+    0
+    3
+    ```
+    
+    - commands
+    
+    ```jsx
+    const [N, ...commands] = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    
+    let queue = [];
+    let result = [];
+    
+    commands.forEach(item => {
+    	if(item.split(' ')[0] === 'push') {
+    		queue.push(item.split(' ')[1]);
+    	} else if(item === 'front') {
+    		result.push(queue.length == 0 ? -1 : queue[0]);
+    	} else if(item === 'back') {
+    		result.push(queue.length == 0 ? -1 : queue[queue.length - 1]);
+    	} else if(item === 'empty') {
+    		result.push(queue.length == 0 ? 1 : 0);
+    	} else if(item === 'pop') {
+    		result.push(queue.length == 0 ? -1 : queue.shift());
+    	} else if(item === 'size') {
+    		result.push(queue.length);
+    	}
+    });
+    
+    console.log(result.join('\n'));
+    ```
+    
+---
+10866 덱
+
+- 풀이
+    
+    ```jsx
+    수를 저장하는 덱(Deque)를 구현한 다음, 입력으로 주어지는 명령을 처리하는 프로그램을 작성하시오.
+    
+    명령은 총 여덟 가지이다.
+    
+    push_front X: 정수 X를 덱의 앞에 넣는다.
+    push_back X: 정수 X를 덱의 뒤에 넣는다.
+    pop_front: 덱의 가장 앞에 있는 수를 빼고, 그 수를 출력한다. 만약, 덱에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+    pop_back: 덱의 가장 뒤에 있는 수를 빼고, 그 수를 출력한다. 만약, 덱에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+    size: 덱에 들어있는 정수의 개수를 출력한다.
+    empty: 덱이 비어있으면 1을, 아니면 0을 출력한다.
+    front: 덱의 가장 앞에 있는 정수를 출력한다. 만약 덱에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+    back: 덱의 가장 뒤에 있는 정수를 출력한다. 만약 덱에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+    
+    /* 첫째 줄에 주어지는 명령의 수 N (1 ≤ N ≤ 10,000)이 주어진다. 둘째 줄부터 N개의 줄에는 명령이 하나씩 주어진다. 
+    주어지는 정수는 1보다 크거나 같고, 100,000보다 작거나 같다. 문제에 나와있지 않은 명령이 주어지는 경우는 없다.*/
+    15
+    push_back 1
+    push_front 2
+    front
+    back
+    size
+    empty
+    pop_front
+    pop_back
+    pop_front
+    size
+    empty
+    pop_back
+    push_front 3
+    empty
+    front
+    
+    /* 출력해야하는 명령이 주어질 때마다, 한 줄에 하나씩 출력한다.*/
+    2
+    1
+    2
+    0
+    2
+    1
+    -1
+    0
+    1
+    -1
+    0
+    3
+    ```
+    
+    ```jsx
+    const [N, ...commands] = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    
+    let dequeue = [];
+    let result = [];
+    
+    for(let i = 0; i < commands.length; i++) {
+    	if(commands[i].split(' ')[0] === 'push_front') {
+    		dequeue.unshift(commands[i].split(' ')[1]);
+    	} else if(commands[i].split(' ')[0] === 'push_back') {
+    		dequeue.push(commands[i].split(' ')[1]);
+    	} else if(commands[i] === 'pop_front') {
+    		result.push(dequeue.length === 0 ? -1 : dequeue.shift());
+    	} else if(commands[i] === 'pop_back') {
+    		result.push(dequeue.length === 0 ? -1 : dequeue.pop());	
+    	} else if(commands[i] === 'size') {
+    		result.push(dequeue.length);
+    	} else if(commands[i] === 'empty') {
+    		result.push(dequeue.length === 0 ? 1 : 0);
+    	} else if(commands[i] === 'front') {
+    		result.push(dequeue.length === 0 ? -1 : dequeue[0]);
+    	} else if(commands[i] === 'back') {
+    		result.push(dequeue.length === 0 ? -1 : dequeue[dequeue.length - 1]);		
+    	}
+    }
+    
+    console.log(result.join('\n'));
+    ```
+    
+---
+10808 **알파벳 개수:** map 사용
+
+- 풀이
+
+```jsx
+알파벳 소문자로만 이루어진 단어 S가 주어진다. 
+각 알파벳이 단어에 몇 개가 포함되어 있는지 구하는 프로그램을 작성하시오.
+
+/*첫째 줄에 단어 S가 주어진다. 단어의 길이는 100을 넘지 않으며, 알파벳 소문자로만 이루어져 있다.*/
+baekjoon
+
+/*
+단어에 포함되어 있는 a의 개수, b의 개수, …, z의 개수를 공백으로 구분해서 출력한다.
+*/
+1 1 0 0 1 0 0 0 0 1 1 0 0 1 2 0 0 0 0 0 0 0 0 0 0 0
+```
+
+idea)
+
+- 길이 26 짜리 알파벳 소문자를 key로 가진 딕셔너리(map)을 생성 값은 0으로 초기화
+- 입력 값을 반복문으로 돌면서 각각 소문자 등장 갯수 count
+- map의 value 값을 공백 기준으로 구분하여 출력
+
+```jsx
+let str = require('fs').readFileSync('/dev/stdin').toString().trim();
+
+let arr = Array.from({length : 26}, (v, i) => [`${String.fromCharCode(i + 97)}`, 0]);
+let newMap = new Map(arr);
+
+for (let i = 0; i < str.length ; i++) {
+	newMap.set(str[i], newMap.get(str[i]) + 1);
+}
+
+let result = ``;
+
+for(let [key, value] of newMap.entries()) {
+	result += `${value} `
+}
+
+console.log(result.trim());
+```
