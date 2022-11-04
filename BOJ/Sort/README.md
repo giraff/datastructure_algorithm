@@ -29,25 +29,7 @@
 10824 네 수
 1406 에디터
 1158 요세푸스 문제
-1168 요세푸스 문제2
-10430 나머지
-2609 최대 공약수와 최소 공배수
-1934 최소 공배수
-1850 최대 공약수
-9613 GCD 합
-11005 진법 변환 2
-2745 진법 변환
-1373 2진수 8진수
-1212 8진수 2진수
-2098 외판원 순회
-11576 Base Conversion 
-1978 소수 찾기
-1929 소수 구하기
-6588 골드바흐의 추측
-11653 소인수 분해
-10872 팩토리얼
-1676 팩토리얼 0의 개수
-2004 조합 0의 개수
+❌ 1168 요세푸스 문제2
 ```
 
 **버블 정렬 Bubble Sort**
@@ -1675,3 +1657,353 @@ for(let [key, value] of newMap.entries()) {
 
 console.log(result.trim());
 ```
+
+10808 **알파벳 개수:** map 사용
+
+- 풀이
+    
+    ```jsx
+    알파벳 소문자로만 이루어진 단어 S가 주어진다. 
+    각 알파벳이 단어에 몇 개가 포함되어 있는지 구하는 프로그램을 작성하시오.
+    
+    /*첫째 줄에 단어 S가 주어진다. 단어의 길이는 100을 넘지 않으며, 알파벳 소문자로만 이루어져 있다.*/
+    baekjoon
+    
+    /*
+    단어에 포함되어 있는 a의 개수, b의 개수, …, z의 개수를 공백으로 구분해서 출력한다.
+    */
+    1 1 0 0 1 0 0 0 0 1 1 0 0 1 2 0 0 0 0 0 0 0 0 0 0 0
+    ```
+    
+    idea)
+    
+    - 길이 26 짜리 알파벳 소문자를 key로 가진 딕셔너리(map)을 생성 값은 0으로 초기화
+    - 입력 값을 반복문으로 돌면서 각각 소문자 등장 갯수 count
+    - map의 value 값을 공백 기준으로 구분하여 출력
+    
+    ```jsx
+    let str = require('fs').readFileSync('/dev/stdin').toString().trim();
+    
+    let arr = Array.from({length : 26}, (v, i) => [`${String.fromCharCode(i + 97)}`, 0]);
+    let newMap = new Map(arr);
+    
+    for (let i = 0; i < str.length ; i++) {
+    	newMap.set(str[i], newMap.get(str[i]) + 1);
+    }
+    
+    let result = ``;
+    
+    for(let [key, value] of newMap.entries()) {
+    	result += `${value} `
+    }
+    
+    console.log(result.trim());
+    ```
+    
+
+10809 **알파벳 찾기 : indexOf 특성) 문자열에서 처음 등장하는 위치를 반환, 없으면 -1 반환**
+
+- 풀이
+    
+    ```jsx
+    알파벳 소문자로만 이루어진 단어 S가 주어진다. 각각의 알파벳에 대해서, 단어에 포함되어 있는 경우에는 처음 등장하는 위치를, 포함되어 있지 않은 경우에는 -1을 출력하는 프로그램을 작성하시오.
+    
+    /* 첫째 줄에 단어 S가 주어진다. 단어의 길이는 100을 넘지 않으며, 알파벳 소문자로만 이루어져 있다. */
+    baekjoon
+    
+    /*
+    각각의 알파벳에 대해서, a가 처음 등장하는 위치, b가 처음 등장하는 위치, ... z가 처음 등장하는 위치를 공백으로 구분해서 출력한다.
+    
+    만약, 어떤 알파벳이 단어에 포함되어 있지 않다면 -1을 출력한다. 단어의 첫 번째 글자는 0번째 위치이고, 두 번째 글자는 1번째 위치이다.
+    */
+    1 0 -1 -1 2 -1 -1 -1 -1 4 3 -1 -1 7 5 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+    
+    ```
+    
+    - 길이 26 짜리 알파벳 소문자를 key로 가진 딕셔너리(map)을 생성 값은 -1으로 초기화
+    - 입력 값을 반복문으로 돌면서 각각 소문자 등장 인덱스 저장
+    - 이미 앞서 등장했다면 저장하지 않고 -1 값을 가진다면 그때 인덱스 저장
+    
+    ```jsx
+    const str = require('fs').readFileSync('/dev/stdin').toString().trim();
+    
+    let lower = Array.from({length: 26}, (v, i) => [`${String.fromCharCode(i+97)}`, -1]);
+    let lowerMap = new Map(lower);
+    
+    for(let i = 0; i < str.length; i++) {
+    	if(lowerMap.get(str[i]) === -1) {
+    		lowerMap.set(str[i], i);
+    	}
+    }
+    
+    let result = ``;
+    for(let [key, value] of lowerMap) {
+    	result += `${value} `;
+    }
+    
+    console.log(result.trim());
+    ```
+    
+    idea2) indexOf 사용 (다른 사람 답)
+    
+    ```jsx
+    const fs = require('fs');
+    const input = fs.readFileSync('dev/stdin').toString();
+    
+    const result = [];
+    
+    for (let i = 97; i <= 122; i++) {
+      result.push(input.indexOf(String.fromCharCode(i)));
+    }
+    
+    console.log(result.join(' '));
+    ```
+    
+    **`indexOf()`** 메서드는 호출한 `[String](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String)` 객체에서 주어진 값과 일치하는 첫 번째 인덱스를 반환합니다. 일치하는 값이 없으면 -1을 반환합니다.
+    
+
+10824 **네 수** [수학, 구현, 문자열, 사칙연산]
+
+- 풀이
+    
+    ```jsx
+    네 자연수 A, B, C, D가 주어진다. 이때, A와 B를 붙인 수와 C와 D를 붙인 수의 합을 구하는 프로그램을 작성하시오.
+    
+    두 수 A와 B를 합치는 것은 A의 뒤에 B를 붙이는 것을 의미한다. 즉, 20과 30을 붙이면 2030이 된다.
+    
+    /* 첫째 줄에 네 자연수 A, B, C, D가 주어진다. (1 ≤ A, B, C, D ≤ 1,000,000) */
+    input:
+    10 20 30 40
+    
+    /* A와 B를 붙인 수와 C와 D를 붙인 수의 합을 출력한다. */
+    output:
+    4060
+    
+    ```
+    
+    9600KB / 148ms
+    
+    ```jsx
+    const input = require('fs').readFileSync('/dev/stdin').toString().trim().split(' ');
+    
+    const num1 = input[0] + input[1];
+    const num2 = input[2] + input[3];
+    
+    console.log(Number(num1) + Number(num2));
+    ```
+    
+
+**1406** **에디터** : 매우 어려움. 단순 index 문제인 줄 알았으나 알고보니 **stack**문제
+
+- 풀이 (답 보고 품)
+    
+    한 줄로 된 간단한 에디터를 구현하려고 한다. 이 편집기는 영어 소문자만을 기록할 수 있는 편집기로, 최대 600,000글자까지 입력할 수 있다.
+    
+    이 편집기에는 '커서'라는 것이 있는데, 커서는 문장의 맨 앞(첫 번째 문자의 왼쪽), 문장의 맨 뒤(마지막 문자의 오른쪽), 또는 문장 중간 임의의 곳(모든 연속된 두 문자 사이)에 위치할 수 있다. 즉 길이가 L인 문자열이 현재 편집기에 입력되어 있으면, 커서가 위치할 수 있는 곳은 L+1가지 경우가 있다.
+    
+    이 편집기가 지원하는 명령어는 다음과 같다.
+    
+    | L | 커서를 왼쪽으로 한 칸 옮김 (커서가 문장의 맨 앞이면 무시됨) |
+    | --- | --- |
+    | D | 커서를 오른쪽으로 한 칸 옮김 (커서가 문장의 맨 뒤이면 무시됨) |
+    | B | 커서 왼쪽에 있는 문자를 삭제함 (커서가 문장의 맨 앞이면 무시됨)삭제로 인해 커서는 한 칸 왼쪽으로 이동한 것처럼 나타나지만, 실제로 커서의 오른쪽에 있던 문자는 그대로임 |
+    | P $ | $라는 문자를 커서 왼쪽에 추가함 |
+    
+    초기에 편집기에 입력되어 있는 문자열이 주어지고, 그 이후 입력한 명령어가 차례로 주어졌을 때, 모든 명령어를 수행하고 난 후 편집기에 입력되어 있는 문자열을 구하는 프로그램을 작성하시오. 단, 명령어가 수행되기 전에 커서는 문장의 맨 뒤에 위치하고 있다고 한다.
+    
+    ```jsx
+    첫째 줄에는 초기에 편집기에 입력되어 있는 문자열이 주어진다. 이 문자열은 길이가 N이고, 
+    영어 소문자로만 이루어져 있으며, 길이는 100,000을 넘지 않는다. 
+    둘째 줄에는 입력할 명령어의 개수를 나타내는 정수 M(1 ≤ M ≤ 500,000)이 주어진다. 
+    셋째 줄부터 M개의 줄에 걸쳐 입력할 명령어가 순서대로 주어진다. 
+    명령어는 위의 네 가지 중 하나의 형태로만 주어진다.
+    
+    input:
+    abcd
+    3
+    P x
+    L
+    P y
+    
+    // 첫째 줄에 모든 명령어를 수행하고 난 후 편집기에 입력되어 있는 문자열을 출력한다.
+    output:
+    abcdyx
+    
+    input2:
+    let tmp = `abc
+    9
+    L
+    L
+    L
+    L
+    L
+    P x
+    L
+    B
+    P y`;
+    
+    ```
+    
+    **풀이 ⇒ 시간 초과**
+    
+    - 단순하게,  cursor을 배열의 index 정도로 생각하고 접근하였더니 시간 초과가 났다.
+    - 알고리즘 구현 종류를 보니 스택/자료구조/ 연결리스트가 있었다.
+    
+    ```jsx
+    let [str, num, ...commands] = require('fs')
+    .readFileSync('/dev/stdin').toString().trim().split('\n');
+    
+    let cursor = str.length;
+    
+    commands.forEach((item, index) => {
+    	if(item.split(' ')[0] === 'P') {
+    		str = str.slice(0, cursor) + item.split(' ')[1] + str.slice(cursor);
+    		cursor += 1;
+    	} else if(item === 'L') {
+    		if(cursor > 0) {
+    			cursor -= 1;
+    		}
+    	} else if(item === 'B') {
+    		if(cursor > 0) {
+    			str = str.slice(0, cursor - 1) + str.slice(cursor);
+    			cursor -= 1;
+    		}
+    	} else if(item === 'D') {
+    		if(cursor < str.length) {
+    			cursor += 1;
+    		}
+    	}
+    });
+    
+    console.log(str);
+    ```
+    
+    풀이 2) 다른 사람의 게시글 참고
+    
+    **How to solve?**
+    
+    이 문제는 ‘2 **개의 스택’**을 이용해서 해결할 수 있다.
+    
+    **1) 그럼 왜 스택을 사용하는 게 좋을까?**
+    
+    문자를 삭제하거나 추가할 때는 항상 ‘커서의 좌측’ 자리에서 발생된다!!
+    커서의 좌측이라고 하면, 어떤 자리에도 들어갈 수 있는게 아닌가 라는 생각이 들지만, 
+    커서가 있는데까지 글자의 전부를 leftStack이라 가정하면 커서의 좌측은 항상 문자열의 끝에 해당된다, 
+    이 문제는 항상 스택의 pop과 push만으로 해결이 가능하다.
+    
+    [a,b,c,d] 라는 최초의 값에서 커서는 d의 뒷쪽에 존재. P x라는 커맨드가 들어오면 [a,b,c,d,x]로 입력이 된다.
+    
+    **2) L,D를 통해 커서를 왼쪽, 오른쪽으로 한 칸 옮김**
+    
+    - 이전의 요구사항에서 도출된 방법에 ‘커서가 존재하는 곳 까지 글자의 전부’ 라고 가정하면
+    - 커서를 왼쪽 or 오른쪽으로 옮기는 것은 [왼쪽] “보이지 않는 곳” 에서 “보이는 곳” 으로 문자열을 가져오거나 [오른쪽] “보이는 곳”에서 “보이지 않는 곳”으로 문자열을 옮겨 없애야 한다
+    그렇다면 leftStack을 “커서가 존재하는 곳” 까지의 문자열을, rightStack은 “커서의 뒷쪽 문자열”을 저장하는 곳으로 정할 수 있는데
+    만약 커서를 좌측으로 옮기게 되면 좌측 배열의 가장 오른쪽 값(=pop())을 오른쪽 배열에 옮겨줌으로써 커서의 이동을 구현할 수 있고 만약 커서를 우측으로 옮기게 되면 오른쪽 배열의 pop() 값을 좌측에 push 해주면 된다.
+    
+    ```jsx
+    const [str, num, ...commands] = require('fs')
+    .readFileSync('/dev/stdin').toString().trim().split('\n');
+    
+    let leftStack = str.split('');
+    let rightStack = [];
+    
+    commands.forEach((item, index) => {
+        if(item.split(' ')[0] === 'P') {
+            leftStack.push(item.split(' ')[1]);
+        } else if(item === 'L') {
+            if(leftStack.length > 0) {
+                rightStack.push(leftStack.pop());
+            }
+        } else if(item === 'D') {
+            if(rightStack.length > 0) {
+                leftStack.push(rightStack.pop());
+            }
+        } else if(item === 'B') {
+            if(leftStack.length > 0) {
+                leftStack.pop();
+            }
+        }
+    });
+    
+    console.log(leftStack.join('') + rightStack.reverse().join(''))
+    ```
+    
+    switch ~ case 문을 이용해 좀 더 코드를 다듬으면 다음과 같다. 
+    
+    ```jsx
+    const [str, num, ...commands] = require('fs')
+    .readFileSync('/dev/stdin').toString().trim().split('\n');
+    
+    let lStack = str.split(''); // 초기값
+    let rStack = []; // 보이지 않는 스택
+    let x = '';
+    
+    commands.forEach((item, index) => {
+    		if(item.length === 3) x = item[2]; // 'P $' 형식인 경우 미리 추가할 데이터 x에 저장
+    
+    		switch(item[0]) {
+    			case "L":
+    				if(lStack.length !== 0) rStack.push(lStack.pop());
+    				break;
+    			case "D":
+    				if(rStack.length !== 0) lStack.push(rStack.pop());
+    				break;
+    			case "B":
+    				if(lStack.length !== 0) lStack.pop();
+    				break;
+    			case "P":
+    				lStack.push(x);
+    		}
+    });
+    
+    // rStack은 반대 순서로 나열되어 있으므로 reverse 해주어야 함
+    const result = [...lStack, ...rStack.reverse()];
+    
+    console.log(result.join(''));
+    ```
+    
+
+1158 **요세푸스 문제 : queue 사용**
+
+- 풀이
+    
+    ```jsx
+    요세푸스 문제는 다음과 같다.
+    
+    1번부터 N번까지 N명의 사람이 원을 이루면서 앉아있고, 양의 정수 K(≤ N)가 주어진다. 이제 순서대로 K번째 사람을 제거한다. 
+    한 사람이 제거되면 남은 사람들로 이루어진 원을 따라 이 과정을 계속해 나간다.
+    이 과정은 N명의 사람이 모두 제거될 때까지 계속된다. 원에서 사람들이 제거되는 순서를 (N, K)-요세푸스 순열이라고 한다. 
+    예를 들어 (7, 3)-요세푸스 순열은 <3, 6, 2, 7, 5, 1, 4>이다.
+    
+    N과 K가 주어지면 (N, K)-요세푸스 순열을 구하는 프로그램을 작성하시오.
+    
+    /*첫째 줄에 N과 K가 빈 칸을 사이에 두고 순서대로 주어진다. (1 ≤ K ≤ N ≤ 5,000)*/
+    7 3
+    /*예제와 같이 요세푸스 순열을 출력한다.*/
+    <3, 6, 2, 7, 5, 1, 4>
+    ```
+    
+    ```jsx
+    const [N, K] = require('fs').readFileSync('/dev/stdin').toString().split(' ');
+    
+    let queue = Array.from({length: +N}, (v, i) => i+1); // 배열 생성
+    let result = [];
+    let count = 1;
+    while(queue.length > 0) {
+    	let tmp = queue.shift(); // 맨 앞자리 빼서
+    	if(count === +K) {
+    		result.push(tmp); // 세번 째 수면 result에 넣고 count 초기화
+    		count = 1;
+    	} else {
+    		queue.push(tmp); // 세번째 수가 아니면 다시 queue에 넣음
+    		count++;
+    	}
+    }
+    
+    console.log(`<${result.join(', ')}>`); // 출력 주의
+    ```
+    
+
+❌ 1168 요세푸스 문제2 /← node.js로는 제한 조건 내에 풀 수 없는 문제
+
+- 풀이
