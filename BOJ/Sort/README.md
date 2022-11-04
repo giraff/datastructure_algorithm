@@ -1,4 +1,4 @@
-# Sorting (50 problems)
+# Sorting (25 problems)
 
 ```
 - 목차
