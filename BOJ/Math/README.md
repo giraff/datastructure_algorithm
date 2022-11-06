@@ -257,3 +257,124 @@ console.log(result.join('\n'));
 착각하지 말자!
 
 2) input 갯수가 100개 뿐이라서 3중 for문도 가능했다.
+
+
+11005 **진법 변환 2** : 내장 메소드를 알면 쉬운 문제
+
+- 풀이
+    
+    ```jsx
+    10진법 수 N이 주어진다. 이 수를 B진법으로 바꿔 출력하는 프로그램을 작성하시오.
+    
+    10진법을 넘어가는 진법은 숫자로 표시할 수 없는 자리가 있다. 이런 경우에는 다음과 같이 알파벳 대문자를 사용한다.
+    
+    A: 10, B: 11, ..., F: 15, ..., Y: 34, Z: 35
+    
+    입력
+    첫째 줄에 N과 B가 주어진다. (2 ≤ B ≤ 36) N은 10억보다 작거나 같은 자연수이다.
+    60466175 36
+    출력
+    첫째 줄에 10진법 수 N을 B진법으로 출력한다.
+    ZZZZZ
+    ```
+    
+    ```jsx
+    const [N, B] = require('fs').readFileSync('/dev/stdin').toString().trim().split(' ').map(v => +v);
+    
+    console.log(N.toString(B).toLocaleUpperCase());
+    ```
+    
+
+2745 **진법 변환** : 내장 메소드를 알면 쉬운 문제
+
+- 풀이
+    
+    ```jsx
+    B진법 수 N이 주어진다. 이 수를 10진법으로 바꿔 출력하는 프로그램을 작성하시오.
+    
+    10진법을 넘어가는 진법은 숫자로 표시할 수 없는 자리가 있다. 이런 경우에는 다음과 같이 알파벳 대문자를 사용한다.
+    
+    A: 10, B: 11, ..., F: 15, ..., Y: 34, Z: 35
+    
+    입력
+    첫째 줄에 N과 B가 주어진다. (2 ≤ B ≤ 36)
+    
+    B진법 수 N을 10진법으로 바꾸면, 항상 10억보다 작거나 같다.
+    ZZZZZ 36
+    출력
+    첫째 줄에 B진법 수 N을 10진법으로 출력한다.
+    60466175
+    ```
+    
+    ```jsx
+    const [N, B] = require('fs').readFileSync('/dev/stdin').toString().trim().split(' ');
+    
+    console.log(parseInt(N, +B));
+    ```
+    
+
+1373 **2진수 8진수** : 2진수를 10진수로 변환할 때 숫자 범위를 생각할 필요가 있다.
+
+- 풀이 (답 보고 품)
+    
+    ```jsx
+    문제
+    2진수가 주어졌을 때, 8진수로 변환하는 프로그램을 작성하시오.
+    
+    입력
+    첫째 줄에 2진수가 주어진다. 주어지는 수의 길이는 1,000,000을 넘지 않는다.
+    11001100
+    출력
+    첫째 줄에 주어진 수를 8진수로 변환하여 출력한다.
+    314
+    ```
+    
+    ```jsx
+    const n = require('fs').readFileSync('/dev/stdin').toString().trim();
+    
+    console.log(parseInt(n, 2).toString(8));
+    ```
+    
+    문제를 처음 풀 때 위의 방법으로 쉽게 풀릴 줄 알았으나, 문제 조건에서 주어지는 2진수의 길이가 1,000,000을 넘지 않는다고 하였으니(999,999은 가능), 10진수로 변환하였을때 엄청나게 큰 수가 나올 수 있다. 그래서 아래 방식처럼 작게 나누어서 문자열로 저장해야 한다.
+    
+    세 자리수 2진수는 최대 7까지 나타낼 수 있어서(000~111) 2진수를 세 자리씩 끊어서 10진수로 변환하여 이어 붙이면 8진수가 된다(ex 111000111(2진수) => 707(8진수)).
+    
+    ```jsx
+    let n = require("fs").readFileSync("/dev/stdin").toString().trim();
+    let oct = "";
+    while (n.length >= 3) {
+        oct = parseInt(n.slice(n.length-3), 2).toString(8) + oct;
+        n = n.slice(0, n.length-3);
+    }
+    console.log((n ? parseInt(n, 2).toString(8) : "") + oct);
+    ```
+    
+
+1212 **8진수 2진수**
+
+- 풀이
+```jsx
+8진수가 주어졌을 때, 2진수로 변환하는 프로그램을 작성하시오.
+
+입력
+첫째 줄에 8진수가 주어진다. 주어지는 수의 길이는 333,334을 넘지 않는다.
+314
+출력
+첫째 줄에 주어진 수를 2진수로 변환하여 출력한다. 수가 0인 경우를 제외하고는 반드시 1로 시작해야 한다.
+11/001/100
+```
+
+```jsx
+let n = require('fs').readFileSync('/dev/stdin').toString().trim();
+
+let binary = '';
+while(n.length > 1) {
+	let trans = parseInt(n.slice(n.length - 1), 8).toString(2);
+	while(trans.length < 3) {
+		trans = '0' + trans;
+	}
+	binary = trans + binary;
+	n = n.slice(0, n.length - 1);
+}
+console.log(parseInt(n, 8).toString(2) + binary);
+```
