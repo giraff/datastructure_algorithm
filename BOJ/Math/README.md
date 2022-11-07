@@ -1,5 +1,105 @@
 ## 수학 문제 (18문제)
 
+### JS의 수학 내장 메소드
+- 절댓값 반환
+
+```js
+Math.abs(x)
+```
+
+- 주어진 숫자보다 큰 정수 중 가장 작은 수 (올림)
+
+```js
+Math.ceil(x)
+```
+
+- 주어진 숫자보다 작은 정수 중 가장 큰 수 (내림)
+
+```js
+Math.floor(x)
+```
+
+- 반올림
+
+```js
+Math.round(x)
+```
+
+- 제곱근
+
+```js
+Math.sqrt(x)
+```
+
+### JS의 실수 / 정수 판별
+- 모듈러스 :: 1로 나눈 나머지로 보기
+
+```js
+num % 1 이 0이면 정수
+num % 1이 0이 아니면 실수
+```
+
+- Math 내장 메소드 .floor()로 확인
+
+
+```js
+Math.floor(num) === num
+
+// 내린 수가 원래 수와 같다면 정수,
+// 아니면 실수
+```
+- 문자열 메소드로 확인
+
+```js
+String.indexOf('.') === -1
+// 문자열로 변환 후, 1번째 인덱스의 값이 '.' 소수점이라면 실수
+// 아니면 정수
+
+```
+
+### 약수의 갯수가 짝수인지 아닌지 판별
+- 약수 갯수가 짝수 : 제곱근으로 나눈 값이 딱 떨어지지 않는다. 제곱근이 실수
+- 약수 갯수가 홀수 : 제곱근이 정수 
+
+### JS의 Bit 연산
+
+```js
+& : AND
+| : OR
+^ : XOR
+~ : NOT
+<< : 왼쪽으로 shift 
+>> : 오른쪽으로 shift
+```
+
+### JS의 숫자인지 아닌지 판별법
+- isNaN() 함수 이용
+
+```js
+console.log(isNaN('195')); // true
+console.log(isNaN('boo')); // false
+```
+
+- '+' 연산자 이용
+```js
+console.log(+'195'); // 195
+console.log(+'boo'); // NaN
+```
+
+- parseInt(): 숫자이면 숫자, 아니면 NaN 반환
+
+```js
+console.log(parseInt('195')); // 195
+console.log(parseInt('boo')); // NaN
+```
+
+- Number() : 숫자면 숫자, 아니면 NaN 반환
+
+```js
+console.log(Number('195')); // 195
+console.log(Number('boo')); // NaN
+```
+
 ### 최대 공약수 구하는 법 :: **유클리드 호제법**
 
 ```jsx
